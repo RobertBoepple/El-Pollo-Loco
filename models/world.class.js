@@ -8,7 +8,10 @@ class World {
     clouds = [
         new Clouds()];
     backgroundObjects = [
-        new BackgroundObject(),];
+        new BackgroundObject('../El-Pollo-Loco/img/5_background/layers/3_third_layer/1.png'),
+        new BackgroundObject('../El-Pollo-Loco/img/5_background/layers/2_second_layer/1.png'),
+        new BackgroundObject('../El-Pollo-Loco/img/5_background/layers/1_first_layer/1.png'),
+        ];
 
     ctx;
     constructor(canvas) {
@@ -18,7 +21,7 @@ class World {
 
     draw() {
         this.ctx.clearRect(0, 0, canvas.width, canvas.height);
-        
+
           this.addObjectsToMap(this.backgroundObjects);
           this.addToMap(this.character);
           this.addObjectsToMap(this.clouds);
