@@ -7,6 +7,9 @@ class World {
     ];
     clouds = [
         new Clouds()];
+    backgroundObjects = [
+        new BackgroundObject(0,100),];
+
     ctx;
     constructor(canvas) {
         this.ctx = canvas.getContext('2d');
@@ -15,14 +18,23 @@ class World {
 
     draw() {
         this.ctx.clearRect(0, 0, canvas.width, canvas.height);
-        this.ctx.drawImage(this.character.img, this.character.x, this.character.y, this.character.width, this.character.height);
-        this.enemies.forEach(enemy => {
-            this.ctx.drawImage(enemy.img, enemy.x, enemy.y, enemy.width, enemy.height)
-          });
-          this.clouds.forEach(clouds => {
-            this.ctx.drawImage(clouds.img, clouds.x, clouds.y, clouds.width, clouds.height)
-          });
+
+          this.addToMap(this.character);
+          this.addObjectsToMap(this.clouds);
+          this.addObjectsToMap(this.enemies);
+          this.addObjectsToMap(this.backgroundObjects);
 
         requestAnimationFrame(() => this.draw());
+    }
+
+    addObjectsToMap(objects){
+        objects.forEach(object => {
+            this.addToMap(object);
+        });
+    }
+
+
+    addToMap(mo) {
+        this.ctx.drawImage(mo.img, mo.x, mo.y, mo.width, mo.height)
     }
 }
