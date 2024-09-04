@@ -8,7 +8,7 @@ class World {
     clouds = [
         new Clouds()];
     backgroundObjects = [
-        new BackgroundObject(0,100),];
+        new BackgroundObject(),];
 
     ctx;
     constructor(canvas) {
