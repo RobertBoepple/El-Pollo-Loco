@@ -18,11 +18,12 @@ class World {
 
     draw() {
         this.ctx.clearRect(0, 0, canvas.width, canvas.height);
-
+        
+          this.addObjectsToMap(this.backgroundObjects);
           this.addToMap(this.character);
           this.addObjectsToMap(this.clouds);
           this.addObjectsToMap(this.enemies);
-          this.addObjectsToMap(this.backgroundObjects);
+          
 
         requestAnimationFrame(() => this.draw());
     }
