@@ -8,7 +8,7 @@ class Character extends MovableObject{
             '../El-Pollo-Loco/img/2_character_pepe/2_walk/W-25.png',
             '../El-Pollo-Loco/img/2_character_pepe/2_walk/W-26.png',
     ];
-    currentImage = 0;
+    
 
     constructor(){
         super().loadImage('../El-Pollo-Loco/img/2_character_pepe/2_walk/W-21.png');
