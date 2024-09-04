@@ -20,5 +20,7 @@ class Clouds extends MovableObject {
             }
         }, 1000/25);
     }
+
+    
     }
 
