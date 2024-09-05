@@ -10,6 +10,7 @@ class MovableObject {
     otherDirection = false;
     speedY = 0;
     acceleration = 2.5;
+    energy = 100;
 
     offset = {
         top: 0,
@@ -63,6 +64,16 @@ class MovableObject {
                 this.y + this.offset.top < mo.y + mo.height - mo.offset.bottom;
     }
 
+    hit() {
+        this.energy -= 5;
+        if(this.energy <= 0){
+            this.energy = 0;
+           }
+    }
+
+    isDead(){
+        return this.energy == 0;
+    }
 
     loadImages(arr){
         arr.forEach((path) => {
