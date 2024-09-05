@@ -13,11 +13,20 @@ class World {
         new BackgroundObject('../El-Pollo-Loco/img/5_background/layers/2_second_layer/1.png'),
         new BackgroundObject('../El-Pollo-Loco/img/5_background/layers/1_first_layer/1.png'),
         ];
-
+    canvas;
     ctx;
-    constructor(canvas) {
+    keyboard;
+
+    constructor(canvas, keyboard) {
         this.ctx = canvas.getContext('2d');
+        this.canvas = canvas;
+        this.keyboard = keyboard;
         this.draw();
+        this.setWorld();
+    }
+
+    setWorld() {
+        this.character.world = this;
     }
 
     draw() {
