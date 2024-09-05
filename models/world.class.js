@@ -30,6 +30,8 @@ class World {
           
         this.ctx.translate(-this.camera_x, 0);
         requestAnimationFrame(() => this.draw());
+
+
     }
 
     addObjectsToMap(objects){
@@ -46,8 +48,12 @@ class World {
             this.ctx.scale(-1, 1);
             this.ctx.drawImage(mo.img, 0, mo.y, mo.width, mo.height);
             this.ctx.restore();
+             
         } else {
-            this.ctx.drawImage(mo.img, mo.x, mo.y, mo.width, mo.height);
+            mo.draw(this.ctx);
+            
         }
+        mo.drawFrame(this.ctx);
     }
+    
 }
