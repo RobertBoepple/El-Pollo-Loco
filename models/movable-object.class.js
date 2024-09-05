@@ -11,6 +11,13 @@ class MovableObject {
     speedY = 0;
     acceleration = 2.5;
 
+    offset = {
+        top: 0,
+        bottom: 0,
+        left: 0,
+        right:0,
+    }
+
     applyGravity(){
         setInterval(() => {
             if(this.isAboveGround() || this.speedY > 0){
@@ -35,12 +42,27 @@ class MovableObject {
     }
 
     drawFrame(ctx){
+
+        if (this instanceof Character || this instanceof Chicken || this instanceof Endboss){
         ctx.beginPath();
         ctx.lineWidth = '3';
         ctx.strokeStyle = 'blue' ;
-        ctx.rect(this.x, this.y, this.width, this.height);
+        ctx.rect(
+            this.x + this.offset.left, 
+            this.y + this.offset.top, 
+            this.width - this.offset.right - this.offset.left, 
+            this.height - this.offset.bottom - this.offset.top);
         ctx.stroke();
+        }
     }
+
+    isColliding(mo) {
+        return  this.x + this.width - this.offset.right > mo.x + mo.offset.left &&
+                this.y + this.height -this.offset.bottom > mo.y + mo.offset.top &&
+                this.x + this.offset.left < mo.x + mo.width - mo.offset.right &&
+                this.y + this.offset.top < mo.y + mo.height - mo.offset.bottom;
+    }
+
 
     loadImages(arr){
         arr.forEach((path) => {
