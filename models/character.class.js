@@ -1,5 +1,8 @@
 class Character extends MovableObject{
-    speed = 5 ;
+
+    height=250
+    y=80;
+    speed = 10 ;
     IMAGES_WALKING = [
             '../El-Pollo-Loco/img/2_character_pepe/2_walk/W-21.png',
             '../El-Pollo-Loco/img/2_character_pepe/2_walk/W-22.png',
@@ -15,8 +18,8 @@ class Character extends MovableObject{
     constructor(){
         super().loadImage('../El-Pollo-Loco/img/2_character_pepe/2_walk/W-21.png');
         this.loadImages(this.IMAGES_WALKING);
-
-            this.animate();
+        this.applyGravity();
+        this.animate();
     }
     
     animate(){
