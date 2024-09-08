@@ -42,6 +42,12 @@ class Character extends MovableObject{
         '../El-Pollo-Loco/img/2_character_pepe/5_dead/D-57.png'
     ]
 
+    IMAGES_HURT = [
+        '../El-Pollo-Loco/img/2_character_pepe/4_hurt/H-41.png',
+        '../El-Pollo-Loco/img/2_character_pepe/4_hurt/H-42.png',
+        '../El-Pollo-Loco/img/2_character_pepe/4_hurt/H-43.png'
+    ]
+
     world;
     walking_sound = new Audio('../El-Pollo-Loco/audio/walking.mp3');
     
@@ -51,6 +57,7 @@ class Character extends MovableObject{
         this.loadImages(this.IMAGES_WALKING);
         this.loadImages(this.IMAGES_JUMPING);
         this.loadImages(this.IMAGES_DEAD);
+        this.loadImages(this.IMAGES_HURT);
         this.applyGravity();
         this.animate();
     }
@@ -83,6 +90,8 @@ class Character extends MovableObject{
         setInterval(() => {
             if(this.isDead()) {
                 this.playAnimation(this.IMAGES_DEAD);
+            } else if(this.isHurt()){
+                this.playAnimation(this.IMAGES_HURT);
             } else if(this.isAboveGround()){
                 this.playAnimation(this.IMAGES_JUMPING);
             } else if(this.world.keyboard.RIGHT || this.world.keyboard.LEFT){
