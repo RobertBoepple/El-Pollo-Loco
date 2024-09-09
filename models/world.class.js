@@ -64,7 +64,7 @@ checkCollisions() {
           this.addObjectsToMap(this.throwableObjects);
           this.addObjectsToMap(this.level.clouds);
           this.addObjectsToMap(this.level.enemies);
-          this.addObjectsToMap(this.level.coin);
+          this.addObjectsToMap(this.level.coins);
           
           
          

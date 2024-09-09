@@ -1,4 +1,4 @@
-class Coin extends MoveableObject {
+class Coins extends MovableObject {
 
     width = 100;
     height = 100;
@@ -9,36 +9,24 @@ class Coin extends MoveableObject {
     ];
 
     constructor() {
-        super().loadImages('../El-Pollo-Loco/img/8_coin/coin_1.png');
+        super().loadImage('../El-Pollo-Loco/img/8_coin/coin_1.png');
+        this.loadImages(this.IMAGES);
         this.x = 400 + Math.random() * 1500;
         this.y = 100 + Math.random() * 100;
         this.animate();
     }
-
-    // coinAnnimation() {
-    //     if (!this.collected) {
-    //         this.playAnnimation(this.IMAGES);
-    //     }
-    // }
-
-    // coinCollected() {
-    //     if (this.collected) {
-    //         this.IMAGES = [];
-    //         this.loadImage(this.IMAGES);
-    //     }
-    // }
-
-    // animate() {
-    //     setInterval(() => {
-    //         this.coinCollected();
-    //     }, 100);
-    //     setInterval(() => {
-    //         this.coinAnnimation();
-    //     }, 500);
-    // }
+    animate(){
+        setInterval(() => {
+            this.moveLeft();
+        }, 1000/60);
+        
+        setInterval(() => {
+            this.playAnimation(this.IMAGES);
+    }, 1000/7);
+    }
+    
 
 
 
 
-
-}
+};
