@@ -29,6 +29,7 @@ class World {
     run() {
     setInterval(() => {
        this.checkCollisions();
+       this.checkCollisionJumpEnemy();
        this.checkCollisionsCoins();
        this.checkCollisionsBottles()
        this.checkThrowObjects();
@@ -52,6 +53,19 @@ checkCollisions() {
     });
 }
 
+checkCollisionJumpEnemy() {
+    this.level.enemies.forEach(enemy => {
+        if(this.character.isColliding(enemy) && this.character.isAboveGround()) {
+            if (!enemy.chickenDead) {
+                this.character.jump();
+                console.log('Jump on enemy');
+            };
+            enemy.chickenDead = true;
+            
+        }
+    });
+}
+
 checkCollisionsCoins() {
     this.level.coins.forEach((coins, index) => {
         if(this.character.isColliding(coins)){
@@ -63,6 +77,7 @@ checkCollisionsCoins() {
         }
     });
 }
+
 
 checkCollisionsBottles() {
     this.level.bottles.forEach((bottles) => {
