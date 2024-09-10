@@ -112,6 +112,7 @@ class Character extends MovableObject{
 
             if(this.world.keyboard.SPACE && !this.isAboveGround()){
                 this.jump();
+                this.idleTime = 0; 
             }
 
 
@@ -129,10 +130,8 @@ class Character extends MovableObject{
                 console.log('Playing jumping animation');
                 this.playAnimation(this.IMAGES_JUMPING);
             } else if(this.world.keyboard.RIGHT || this.world.keyboard.LEFT){
-                console.log('Playing walking animation');
                 this.playAnimation(this.IMAGES_WALKING);
             } else {
-                console.log('Playing idle animation');
                 this.characterAnimationIdle();
             }
     },50);
@@ -140,7 +139,6 @@ class Character extends MovableObject{
 
     characterAnimationIdle() {
         this.playAnimation(this.IMAGES_STANDING);
-        console.log('Idle time', this.idleTime);
         this.idleTime += 150;
         if (this.idleTime >=6000) {
             this.playAnimation(this.IMAGES_SLEEPING);
@@ -148,10 +146,6 @@ class Character extends MovableObject{
     }
 
     playAnimation(images) {
-        if (!images || images.length === 0) {
-            console.error('No images to play animation');
-            return;
-        }
         let i = this.currentImage % images.length;
         let path = images[i];
         this.img = this.imageCache[path];

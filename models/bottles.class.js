@@ -11,7 +11,7 @@ class Bottles extends MovableObject {
     constructor() {
         super().loadImage('../El-Pollo-Loco/img/6_salsa_bottle/salsa_bottle.png');
         this.loadImages(this.IMAGES);
-        this.x = 400 + Math.random() * 1500;
+        this.x = 300 + Math.random() * 1500;
         this.y = 100 + Math.random() * 100;
         this.animate();
     }

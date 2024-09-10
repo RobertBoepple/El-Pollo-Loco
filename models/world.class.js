@@ -27,44 +27,42 @@ class World {
     }
 
     run() {
-    setInterval(() => {
-       this.checkCollisions();
-       this.checkCollisionJumpEnemy();
-       this.checkCollisionsCoins();
-       this.checkCollisionsBottles()
-       this.checkThrowObjects();
-    }, 200);
-}
+        requestAnimationFrame(() => {
+            this.checkCollisions();
+            this.checkCollisionsCoins();
+            this.checkCollisionsBottles();
+            this.checkThrowObjects();
+            this.run();
+        });
+    }
+    
 
-checkThrowObjects(){
-    if(this.keyboard.D) {
+checkThrowObjects() {
+    if (this.keyboard.D && !this.character.isThrowing) {
         let bottle = new ThrowableObject(this.character.x + 100, this.character.y + 100);
         this.throwableObjects.push(bottle);
+        this.character.isThrowing = true;
+        setTimeout(() => this.character.isThrowing = false, 500);  // Verhindert dauerhaftes Werfen
     }
 }
 
+
 checkCollisions() {
     this.level.enemies.forEach((enemy) => {
-        if(this.character.isColliding(enemy)){
+        if (this.character.isColliding(enemy) && this.character.isAboveGround() && !enemy.chickenDead) {
+            this.character.jump();
+            enemy.chickenDead = true;
+            enemy.enemyIsDead = true
+            console.log('Enemy defeated by jumping');
+        } 
+        else if (this.character.isColliding(enemy) && !enemy.chickenDead && !this.character.isAboveGround()) {
             this.character.hit();
             this.statusBar.setPercentage(this.character.energy);
-            console.log('Collision with Charakter, energy',this.character.energy);
+            console.log('Character hit, energy:', this.character.energy);
         }
     });
 }
 
-checkCollisionJumpEnemy() {
-    this.level.enemies.forEach(enemy => {
-        if(this.character.isColliding(enemy) && this.character.isAboveGround()) {
-            if (!enemy.chickenDead) {
-                this.character.jump();
-                console.log('Jump on enemy');
-            };
-            enemy.chickenDead = true;
-            
-        }
-    });
-}
 
 checkCollisionsCoins() {
     this.level.coins.forEach((coins, index) => {
@@ -96,6 +94,7 @@ checkCollisionsBottles() {
         this.ctx.translate(this.camera_x, 0);
 
           this.addObjectsToMap(this.level.backgroundObjects);
+          this.addObjectsToMap(this.level.clouds);
           this.ctx.translate(-this.camera_x, 0);
           this.addToMap(this.statusBar);
           this.addToMap(this.statusBoss);
@@ -104,7 +103,6 @@ checkCollisionsBottles() {
           this.ctx.translate(this.camera_x, 0);
           this.addToMap(this.character);
           this.addObjectsToMap(this.throwableObjects);
-          this.addObjectsToMap(this.level.clouds);
           this.addObjectsToMap(this.level.enemies);
           this.addObjectsToMap(this.level.coins);
           this.addObjectsToMap(this.level.bottles);

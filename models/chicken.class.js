@@ -3,13 +3,14 @@ class Chicken extends MovableObject {
     y = 350;
     height = 75;
     width = 50;
+    enemyisDead = false;
     chickenDead = false;
 
     offset = {
-        top: 0,
-        bottom: 0,
-        left: -5,
-        right: 0,
+        top: 5,
+        bottom: 5,
+        left: 5,
+        right: 5,
     }
     IMAGES_WALKING = [
         '../El-Pollo-Loco/img/3_enemies_chicken/chicken_normal/1_walk/1_w.png',
@@ -32,7 +33,7 @@ class Chicken extends MovableObject {
     }
     animate(){
         setInterval(() => {
-            this.moveLeft();
+            this.chickenMoves();
         }, 1000/60);
         
         setInterval(() => {
@@ -52,7 +53,11 @@ class Chicken extends MovableObject {
         }, 500);
     }
    
-
+    chickenMoves() {
+        if (!this.enemyIsDead) {
+            this.moveLeft();
+        }
+    }
 
 
 }
