@@ -6,9 +6,9 @@ class Chicken extends MovableObject {
     chickenDead = false;
 
     offset = {
-        top: 5,
-        bottom: 10,
-        left: 0,
+        top: 0,
+        bottom: 0,
+        left: -5,
         right: 0,
     }
     IMAGES_WALKING = [
@@ -39,22 +39,19 @@ class Chicken extends MovableObject {
             if(!this.chickenDead){
                 this.playAnimation(this.IMAGES_WALKING);
             } else {
-                this.playAnimation(this.IMAGES_DEAD);
+                this.chickenAnimationDead();
             }
             
     }, 1000/7);
+    
     }
-
-    // chickenAnimateDead() {
-    //     this.loadImage(this.IMAGES_DEAD);
-    //     if (this.musicCounter === 0) {
-    //         this.playSound(world.chickenDead_music);
-    //     }
-    //     this.musicCounter++;
-    //     setTimeout(() => {
-    //         this.IMAGES_DEAD = [];
-    //     }, 500);
-    // }
+    chickenAnimationDead() {
+        this.loadImage(this.IMAGES_DEAD);
+        setTimeout(() => {
+            this.IMAGES_DEAD = [];
+        }, 500);
+    }
+   
 
 
 
