@@ -10,6 +10,8 @@ class World {
     statusCoin = new CoinStatusBar();
     statusBottle = new BottleStatusBar();
     throwableObjects = [];
+    coinsCollected = 0;
+    bottlesCollected = 0;
 
     constructor(canvas, keyboard) {
         this.ctx = canvas.getContext('2d');
@@ -27,6 +29,8 @@ class World {
     run() {
     setInterval(() => {
        this.checkCollisions();
+       this.checkCollisionsCoins();
+       this.checkCollisionsBottles()
        this.checkThrowObjects();
     }, 200);
 }
@@ -48,6 +52,28 @@ checkCollisions() {
     });
 }
 
+checkCollisionsCoins() {
+    this.level.coins.forEach((coins, index) => {
+        if(this.character.isColliding(coins)){
+            coins.collected = true;
+            this.coinsCollected = this.coinsCollected + 20;
+            this.statusCoin.setPercentage(this.coinsCollected);
+            this.level.coins.splice(index, 1);
+            console.log('Collision with Coin, Coin ',this.coinsCollected);
+        }
+    });
+}
+
+checkCollisionsBottles() {
+    this.level.bottles.forEach((bottles) => {
+        if(this.character.isColliding(bottles)){
+            this.bottlesCollected = this.bottlesCollected + 20;
+            this.statusBottle.setPercentage(this.bottlesCollected);
+            console.log('Collision with Bottle, Bottle ',this.bottlesCollected);
+        }
+    });
+}
+
     draw() {
         this.ctx.clearRect(0, 0, canvas.width, canvas.height);
 
@@ -65,6 +91,7 @@ checkCollisions() {
           this.addObjectsToMap(this.level.clouds);
           this.addObjectsToMap(this.level.enemies);
           this.addObjectsToMap(this.level.coins);
+          this.addObjectsToMap(this.level.bottles);
           
           
          

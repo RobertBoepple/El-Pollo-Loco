@@ -3,6 +3,7 @@ class Coins extends MovableObject {
     width = 100;
     height = 100;
     collected = false;
+    energy = 0;
     IMAGES = [
         '../El-Pollo-Loco/img/8_coin/coin_1.png',
         '../El-Pollo-Loco/img/8_coin/coin_2.png',
@@ -15,18 +16,25 @@ class Coins extends MovableObject {
         this.y = 100 + Math.random() * 100;
         this.animate();
     }
+
+    coinCollected() {
+        if (this.collected) {
+            this.IMAGES = [];
+            this.loadImage(this.IMAGES);
+        }
+    }
+
+
+
+    coinAnimation() {
+        if (!this.collected) {
+            this.playAnimation(this.IMAGES);
+        }
+    }
     animate(){
-        setInterval(() => {
-            this.moveLeft();
-        }, 1000/60);
-        
         setInterval(() => {
             this.playAnimation(this.IMAGES);
     }, 1000/7);
     }
     
-
-
-
-
 };
