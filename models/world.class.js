@@ -80,12 +80,26 @@ checkCollisionsCoins() {
 }
 
 
+// checkCollisionsBottles() {
+//     this.level.bottles.forEach((bottles, index) => {
+//         if(this.character.isColliding(bottles)){
+//             this.bottlesCollected = this.bottlesCollected + 20;
+//             this.statusBottle.setPercentage(this.bottlesCollected);
+//             this.level.bottles.splice(index, 1);
+//             console.log('Collision with Bottle, Bottle ',this.bottlesCollected);
+//         }
+//     });
+// }
+
 checkCollisionsBottles() {
     this.level.bottles.forEach((bottles, index) => {
-        if(this.character.isColliding(bottles)){
+        if(this.character.isColliding(bottles) && this.bottlesCollected < 100){
             this.bottlesCollected = this.bottlesCollected + 20;
             this.statusBottle.setPercentage(this.bottlesCollected);
             this.level.bottles.splice(index, 1);
+            if(this.statusBottle.setPercentage > 100){
+                this.statusBottle.setPercentage = 100;
+            }
             console.log('Collision with Bottle, Bottle ',this.bottlesCollected);
         }
     });
