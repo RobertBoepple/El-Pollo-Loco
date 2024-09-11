@@ -23,6 +23,8 @@ class Chicken extends MovableObject {
         '../El-Pollo-Loco/img/3_enemies_chicken/chicken_normal/2_dead/dead.png'
     ];
 
+    soundPlayed = false;
+
     constructor(){
         super().loadImage('../El-Pollo-Loco/img/3_enemies_chicken/chicken_normal/1_walk/1_w.png');
         this.loadImages(this.IMAGES_WALKING);
@@ -41,16 +43,22 @@ class Chicken extends MovableObject {
                 this.playAnimation(this.IMAGES_WALKING);
             } else {
                 this.chickenAnimationDead();
+                
             }
             
     }, 1000/7);
     
     }
     chickenAnimationDead() {
-        this.loadImage(this.IMAGES_DEAD);
-        setTimeout(() => {
-            this.IMAGES_DEAD = [];
-        }, 500);
+        if (!this.soundPlayed) { 
+            this.loadImage(this.IMAGES_DEAD);
+            world.chickenDead_sound.play();
+            this.soundPlayed = true; 
+
+            setTimeout(() => {
+                this.IMAGES_DEAD = [];
+            }, 500);
+        }
     }
    
     chickenMoves() {

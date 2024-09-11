@@ -13,6 +13,9 @@ class World {
     coinsCollected = 0;
     bottlesCollected = 0;
 
+    chickenDead_sound = new Audio('../El-Pollo-Loco/audio/chicken.mp3');
+
+
     constructor(canvas, keyboard) {
         this.ctx = canvas.getContext('2d');
         this.canvas = canvas;
