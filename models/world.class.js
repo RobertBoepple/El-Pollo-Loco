@@ -38,6 +38,7 @@ class World {
             this.checkCollisionsBottles();
             this.checkThrowObjects();
             this.checkCollisionCharacterEndboss();
+            this.checkCollisonEndbosswithThrowableObjects();
             this.run();
         });
     }
@@ -48,15 +49,9 @@ class World {
             let bottle = new ThrowableObject(this.character.x + 100, this.character.y + 100);
             this.throwableObjects.push(bottle);
             this.character.isThrowing = true;
-            setTimeout(() => this.character.isThrowing = false, 500);  // Verhindert dauerhaftes Werfen
-            
-            // Reduziert die Anzahl der gesammelten Flaschen um 1
+            setTimeout(() => this.character.isThrowing = false, 500);
             this.bottlesCollected -= 1;
-            
-            // Berechnet den neuen Prozentsatz basierend auf der Anzahl der verbleibenden Flaschen
             let percentage = (this.bottlesCollected / this.maxBottles) * 100;
-            
-            // Aktualisiert den Status der Flaschenanzeige
             this.statusBottle.setPercentage(percentage);
             console.log("Bottles Collected: ", this.bottlesCollected);
             console.log("Percentage: ", percentage);
@@ -73,6 +68,18 @@ checkCollisionCharacterEndboss() {
         }
     });
 } 
+
+checkCollisonEndbosswithThrowableObjects() {
+    this.level.finalboss.forEach((finalboss) => {
+        this.throwableObjects.forEach((throwableObject, index) => {
+            if (throwableObject.isColliding(finalboss) && throwableObject.isAboveGround()) {
+                finalboss.energy -= 10;
+                console.log('Endboss hit by throwable object, energy:', finalboss.energy);
+                this.throwableObjects.splice(index, 1); 
+            }
+        });
+    });
+}
 
 
 checkCollisions() {

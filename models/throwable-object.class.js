@@ -16,7 +16,8 @@ class ThrowableObject extends MovableObject {
         '../El-Pollo-Loco/img/6_salsa_bottle/bottle_rotation/bottle_splash/6_bottle_splash.png'
         
     ];
-    isColliding = false;
+    isCollidingThrowable = false;
+
     constructor(x, y) {
         super().loadImages(['../El-Pollo-Loco/img/6_salsa_bottle/bottle_rotation/1_bottle_rotation.png']);
 
@@ -33,7 +34,7 @@ class ThrowableObject extends MovableObject {
 
     throw() {
         this.speedY = 20;
-        if (!this.isColliding) {
+        if (!this.isCollidingThrowable) {
             this.applyGravity();
             setInterval(() => {
                 this.x += 10;
@@ -46,7 +47,7 @@ class ThrowableObject extends MovableObject {
 
 
     animate() {
-        if (this.isAboveGround() && !this.isColliding) {
+        if (this.isAboveGround() && !this.isCollidingThrowable) {
             this.playAnimation(this.IMAGES_ROTATION);  
         }
         else {
