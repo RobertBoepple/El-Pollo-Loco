@@ -13,8 +13,9 @@ class World {
     coinsCollected = 0;
     bottlesCollected = 0;
     maxBottles = 5;
-
+    collisionWithEndboss = false;
     chickenDead_sound = new Audio('../El-Pollo-Loco/audio/chicken.mp3');
+   
 
 
     constructor(canvas, keyboard) {
@@ -36,6 +37,7 @@ class World {
             this.checkCollisionsCoins();
             this.checkCollisionsBottles();
             this.checkThrowObjects();
+            this.checkCollisionCharacterEndboss();
             this.run();
         });
     }
@@ -61,7 +63,16 @@ class World {
         }
     }
     
-    
+checkCollisionCharacterEndboss() {
+    this.level.finalboss.forEach((finalboss) => {
+        if (this.character.isColliding(finalboss) && !this.collisionWithEndboss) {
+            this.collisionWithEndboss = true;
+            this.character.energy = 0;
+            this.statusBar.setPercentage(this.character.energy);
+            console.log('Character hit by endboss, energy:', this.character.energy);
+        }
+    });
+} 
 
 
 checkCollisions() {
@@ -109,6 +120,9 @@ checkCollisionsBottles() {
     });
 }
 
+
+
+
     draw() {
         this.ctx.clearRect(0, 0, canvas.width, canvas.height);
 
@@ -125,6 +139,7 @@ checkCollisionsBottles() {
           this.addToMap(this.character);
           this.addObjectsToMap(this.throwableObjects);
           this.addObjectsToMap(this.level.enemies);
+          this.addObjectsToMap(this.level.finalboss);
           this.addObjectsToMap(this.level.coins);
           this.addObjectsToMap(this.level.bottles);
           
