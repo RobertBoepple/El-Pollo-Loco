@@ -12,6 +12,7 @@ class World {
     throwableObjects = [];
     coinsCollected = 0;
     bottlesCollected = 0;
+    maxBottles = 5;
 
     chickenDead_sound = new Audio('../El-Pollo-Loco/audio/chicken.mp3');
 
@@ -40,15 +41,27 @@ class World {
     }
     
 
-checkThrowObjects() {
-    if (this.keyboard.D && !this.character.isThrowing && this.bottlesCollected > 0) {
-        let bottle = new ThrowableObject(this.character.x + 100, this.character.y + 100);
-        this.throwableObjects.push(bottle);
-        this.character.isThrowing = true;
-        setTimeout(() => this.character.isThrowing = false, 500);  // Verhindert dauerhaftes Werfen
-        this.bottlesCollected = this.bottlesCollected - 20;
+    checkThrowObjects() {
+        if (this.keyboard.D && !this.character.isThrowing && this.bottlesCollected > 0) {
+            let bottle = new ThrowableObject(this.character.x + 100, this.character.y + 100);
+            this.throwableObjects.push(bottle);
+            this.character.isThrowing = true;
+            setTimeout(() => this.character.isThrowing = false, 500);  // Verhindert dauerhaftes Werfen
+            
+            // Reduziert die Anzahl der gesammelten Flaschen um 1
+            this.bottlesCollected -= 1;
+            
+            // Berechnet den neuen Prozentsatz basierend auf der Anzahl der verbleibenden Flaschen
+            let percentage = (this.bottlesCollected / this.maxBottles) * 100;
+            
+            // Aktualisiert den Status der Flaschenanzeige
+            this.statusBottle.setPercentage(percentage);
+            console.log("Bottles Collected: ", this.bottlesCollected);
+            console.log("Percentage: ", percentage);
+        }
     }
-}
+    
+    
 
 
 checkCollisions() {
@@ -75,33 +88,23 @@ checkCollisionsCoins() {
             this.coinsCollected = this.coinsCollected + 20;
             this.statusCoin.setPercentage(this.coinsCollected);
             this.level.coins.splice(index, 1);
-            console.log('Collision with Coin, Coin ',this.coinsCollected);
+            
         }
     });
 }
 
 
-// checkCollisionsBottles() {
-//     this.level.bottles.forEach((bottles, index) => {
-//         if(this.character.isColliding(bottles)){
-//             this.bottlesCollected = this.bottlesCollected + 20;
-//             this.statusBottle.setPercentage(this.bottlesCollected);
-//             this.level.bottles.splice(index, 1);
-//             console.log('Collision with Bottle, Bottle ',this.bottlesCollected);
-//         }
-//     });
-// }
 
 checkCollisionsBottles() {
     this.level.bottles.forEach((bottles, index) => {
-        if(this.character.isColliding(bottles) && this.bottlesCollected < 100){
-            this.bottlesCollected = this.bottlesCollected + 20;
-            this.statusBottle.setPercentage(this.bottlesCollected);
+        if(this.character.isColliding(bottles) && this.bottlesCollected < 5){
+            this.bottlesCollected = this.bottlesCollected + 1;
+            this.statusBottle.setPercentage(this.bottlesCollected *20);
             this.level.bottles.splice(index, 1);
-            if(this.statusBottle.setPercentage > 100){
-                this.statusBottle.setPercentage = 100;
+            if(this.statusBottle.bottlesCollected > 100){
+                this.statusBottle.bottlesCollected = 100;
             }
-            console.log('Collision with Bottle, Bottle ',this.bottlesCollected);
+            
         }
     });
 }
