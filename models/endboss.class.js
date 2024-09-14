@@ -65,10 +65,121 @@ class Finalboss extends MovableObject {
         
     }
 
-animate(){
-    setInterval(() => {
-        this.playAnimation(this.IMAGES_ALERT);
-}, 1000/7);}
+    hitFinalBoss() {
+        this.energy -= 20; // Direkter Zugriff auf die Energie der Instanz
+        if (this.energy <= 0) {
+            this.energy = 0;
+            // Hier kannst du die Logik für den Tod des Endbosses einfügen
+            console.log('Endboss is dead');
+        }else {
+            this.lastHitFinalBoss = new Date().getTime();
+        }
+    }
 
+    isHurtFinalBoss() {
+        let timepassed = new Date().getTime() - this.lastHitFinalBoss;
+        timepassed = timepassed / 1000;
+        return timepassed < 1;
+    }
+
+    isDeadFinalBoss() {
+        return this.energyFinalBoss == 0;
+        
+    }
+
+    finalBossAnimation() {
+        if (this.isDeadFinalBoss()) {
+            this.finalBossAnimationDead();
+        }
+        else if (this.isHurtFinalBoss()) {
+            this.finalBossAnimationHurt();
+        }        
+        else if (this.i < 15) {
+            this.finalBossAnimationAlert();     
+        }
+        else if (this.i < 30) {
+            this.finalBossAnimationAttack();
+        }
+        else {        
+            this.finalBossAnimationWalk();
+        }
+        this.i++;    
+        this.finalBossFirstContact();   
+    }
+
+    finalBossAnimationDead() {
+        this.playAnimation(this.IMAGES_DEAD);
+        console.log('Endboss is dead');
+        // world.gameOver = true;
+        // world.background_music.pause()
+        // setTimeout(() => {
+        //     this.clearAllIntervals();
+        //     this.playSound(world.win_sound);
+        //     gameOverWin();
+        // }, 1500);
+    }
+
+     /**
+     * animation at hurt
+     * 
+     */
+     finalBossAnimationHurt() {
+        this.playAnimation(this.IMAGES_HURT);
+        console.log('Endboss is hurt');
+    }
+
+
+    /**
+     * animation at alert
+     * 
+     */
+    finalBossAnimationAlert() {
+        this.playAnimation(this.IMAGES_ALERT);
+        console.log('Endboss is alert');
+    }
+
+
+    /**
+     * animation at attack
+     * 
+     */
+    finalBossAnimationAttack() {
+        this.playAnimation(this.IMAGES_ATTACK);
+        console.log('Endboss is attacking');
+    }
+    
+
+    /**
+     * animation at walking
+     * 
+     */
+    finalBossAnimationWalk() {
+        this.playAnimation(this.IMAGES_WALKING);
+        console.log('Endboss is walking');
+    }
+
+    finalBossFirstContact() {
+        if (world.character.x > 1425 && !this.hadFirstContact) {
+            this.i = 0;
+            this.hadFirstContact = true;
+        }
+    }
+   
+
+    animate() {
+        setInterval(() => {
+            this.finalBossAnimation();            
+        }, 200);
+        setInterval(() => {
+            if (this.hadFirstContact && this.i > 30 && !this.isDeadFinalBoss() && !this.isHurtFinalBoss()) {
+                this.x -= this.speed;    
+            }        
+        }, 1000 / 60);
+        setInterval(() => {
+            if (this.isHurtFinalBoss()) {
+               world.finalbossHurt_sound.play();
+            }
+        }, 100);
+    }
 
 }

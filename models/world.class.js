@@ -21,6 +21,7 @@ class World {
     jump_sound = new Audio('../El-Pollo-Loco/audio/jump.mp3');
     walking_sound = new Audio('../El-Pollo-Loco/audio/walking.mp3');
     characterHurt_sound = new Audio('../El-Pollo-Loco/audio/hurt.mp3');
+    finalbossHurt_sound = new Audio('../El-Pollo-Loco/audio/finalboss_hurt.mp3');
     throwObject_sound = new Audio('../El-Pollo-Loco/audio/throw.mp3');
     gameOver_sound = new Audio('../El-Pollo-Loco/audio/game_over.mp3');
 
@@ -80,7 +81,8 @@ checkCollisonEndbosswithThrowableObjects() {
     this.level.finalboss.forEach((finalboss) => {
         this.throwableObjects.forEach((throwableObject, index) => {
             if (throwableObject.isColliding(finalboss) && throwableObject.isAboveGround()) {
-                finalboss.energy -= 10;
+                finalboss.hitFinalBoss();
+                this.statusBoss.setPercentage(finalboss.energy);
                 world.bottleBroken_sound.play();
                 console.log('Endboss hit by throwable object, energy:', finalboss.energy);
                 this.throwableObjects.splice(index, 1); 
