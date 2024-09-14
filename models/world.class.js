@@ -17,11 +17,12 @@ class World {
     chickenDead_sound = new Audio('../El-Pollo-Loco/audio/chicken.mp3');
     bottleBroken_sound = new Audio('../El-Pollo-Loco/audio/glass.mp3');
     collectCoin_sound = new Audio('../El-Pollo-Loco/audio/coin.mp3');
+    collectBottle_sound = new Audio('../El-Pollo-Loco/audio/bottle.mp3');
     jump_sound = new Audio('../El-Pollo-Loco/audio/jump.mp3');
     walking_sound = new Audio('../El-Pollo-Loco/audio/walking.mp3');
     characterHurt_sound = new Audio('../El-Pollo-Loco/audio/hurt.mp3');
     throwObject_sound = new Audio('../El-Pollo-Loco/audio/throw.mp3');
-
+    gameOver_sound = new Audio('../El-Pollo-Loco/audio/game_over.mp3');
 
     constructor(canvas, keyboard) {
         this.ctx = canvas.getContext('2d');
@@ -54,6 +55,7 @@ class World {
             let bottle = new ThrowableObject(this.character.x + 100, this.character.y + 100);
             this.throwableObjects.push(bottle);
             this.character.isThrowing = true;
+            world.throwObject_sound.play();
             setTimeout(() => this.character.isThrowing = false, 500);
             this.bottlesCollected -= 1;
             let percentage = (this.bottlesCollected / this.maxBottles) * 100;
@@ -124,6 +126,7 @@ checkCollisionsBottles() {
     this.level.bottles.forEach((bottles, index) => {
         if(this.character.isColliding(bottles) && this.bottlesCollected < 5){
             this.bottlesCollected = this.bottlesCollected + 1;
+            world.collectBottle_sound.play();
             this.statusBottle.setPercentage(this.bottlesCollected * 20);
             this.level.bottles.splice(index, 1);
             if(this.statusBottle.bottlesCollected > 100){
