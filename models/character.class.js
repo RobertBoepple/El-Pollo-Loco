@@ -76,7 +76,7 @@ class Character extends MovableObject{
     ];
 
     world;
-    walking_sound = new Audio('../El-Pollo-Loco/audio/walking.mp3');
+    
     
 
     constructor(){
@@ -94,24 +94,25 @@ class Character extends MovableObject{
     animate(){
 
         setInterval(() => {
-            this.walking_sound.pause();
+            world.walking_sound.pause();
             if(this.world.keyboard.RIGHT && this.x < this.world.level.level_end_x) {
                 this.moveRight();
                 this.otherDirection = false;
-                this.walking_sound.play();
+                world.walking_sound.play();
                 this.idleTime = 0;
             }
 
             if(this.world.keyboard.LEFT && this.x > -615) {
                 this.moveLeft();
                 this.otherDirection = true;
-                this.walking_sound.play();
+                world.walking_sound.play();
                 this.idleTime = 0;
             }
 
 
             if(this.world.keyboard.SPACE && !this.isAboveGround()){
                 this.jump();
+                world.jump_sound.play();
                 this.idleTime = 0; 
             }
 
@@ -123,8 +124,10 @@ class Character extends MovableObject{
             if(this.isDead()) {
                 console.log('Playing dead animation');
                 this.playAnimation(this.IMAGES_DEAD);
+                
             } else if(this.isHurt()){
                 console.log('Playing hurt animation');
+                world.characterHurt_sound.play();
                 this.playAnimation(this.IMAGES_HURT);
             } else if(this.isAboveGround()){
                 console.log('Playing jumping animation');

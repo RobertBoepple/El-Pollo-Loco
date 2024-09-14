@@ -15,7 +15,12 @@ class World {
     maxBottles = 5;
     collisionWithEndboss = false;
     chickenDead_sound = new Audio('../El-Pollo-Loco/audio/chicken.mp3');
-   
+    bottleBroken_sound = new Audio('../El-Pollo-Loco/audio/glass.mp3');
+    collectCoin_sound = new Audio('../El-Pollo-Loco/audio/coin.mp3');
+    jump_sound = new Audio('../El-Pollo-Loco/audio/jump.mp3');
+    walking_sound = new Audio('../El-Pollo-Loco/audio/walking.mp3');
+    characterHurt_sound = new Audio('../El-Pollo-Loco/audio/hurt.mp3');
+    throwObject_sound = new Audio('../El-Pollo-Loco/audio/throw.mp3');
 
 
     constructor(canvas, keyboard) {
@@ -74,6 +79,7 @@ checkCollisonEndbosswithThrowableObjects() {
         this.throwableObjects.forEach((throwableObject, index) => {
             if (throwableObject.isColliding(finalboss) && throwableObject.isAboveGround()) {
                 finalboss.energy -= 10;
+                world.bottleBroken_sound.play();
                 console.log('Endboss hit by throwable object, energy:', finalboss.energy);
                 this.throwableObjects.splice(index, 1); 
             }
@@ -103,6 +109,7 @@ checkCollisionsCoins() {
     this.level.coins.forEach((coins, index) => {
         if(this.character.isColliding(coins)){
             coins.collected = true;
+            world.collectCoin_sound.play();
             this.coinsCollected = this.coinsCollected + 20;
             this.statusCoin.setPercentage(this.coinsCollected);
             this.level.coins.splice(index, 1);
@@ -117,7 +124,7 @@ checkCollisionsBottles() {
     this.level.bottles.forEach((bottles, index) => {
         if(this.character.isColliding(bottles) && this.bottlesCollected < 5){
             this.bottlesCollected = this.bottlesCollected + 1;
-            this.statusBottle.setPercentage(this.bottlesCollected *20);
+            this.statusBottle.setPercentage(this.bottlesCollected * 20);
             this.level.bottles.splice(index, 1);
             if(this.statusBottle.bottlesCollected > 100){
                 this.statusBottle.bottlesCollected = 100;
