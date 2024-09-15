@@ -83,7 +83,7 @@ class Finalboss extends MovableObject {
     }
 
     isDeadFinalBoss() {
-        return this.energyFinalBoss == 0;
+        return this.energy == 0;
         
     }
 
