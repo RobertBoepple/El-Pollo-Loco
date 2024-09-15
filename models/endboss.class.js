@@ -59,7 +59,7 @@ class Finalboss extends MovableObject {
         this.loadImages(this.IMAGES_ATTACK);
         this.loadImages(this.IMAGES_HURT);
         this.loadImages(this.IMAGES_DEAD);
-        this.x = 700;
+        this.x = 2000;
         this.animate();
 
         
@@ -110,7 +110,7 @@ class Finalboss extends MovableObject {
     finalBossAnimationDead() {
         this.playAnimation(this.IMAGES_DEAD);
         console.log('Endboss is dead');
-        // world.gameOver = true;
+        world.gameOver = true;
         // world.background_music.pause()
         // setTimeout(() => {
         //     this.clearAllIntervals();

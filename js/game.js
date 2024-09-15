@@ -1,6 +1,7 @@
 let canvas;
 let ctx;
 let world;
+let isMuted = false;
 let keyboard = new Keyboard();
 
 

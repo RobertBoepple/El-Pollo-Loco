@@ -13,7 +13,9 @@ class World {
     coinsCollected = 0;
     bottlesCollected = 0;
     maxBottles = 5;
+    gameOver = false;
     collisionWithEndboss = false;
+    background_music = new Audio('../El-Pollo-Loco/audio/game_music.mp3');
     chickenDead_sound = new Audio('../El-Pollo-Loco/audio/chicken.mp3');
     bottleBroken_sound = new Audio('../El-Pollo-Loco/audio/glass.mp3');
     collectCoin_sound = new Audio('../El-Pollo-Loco/audio/coin.mp3');
@@ -36,7 +38,13 @@ class World {
 
     setWorld() {
         this.character.world = this;
+        if (!isMuted) {
+            this.background_music.loop = true;
+            this.background_music.volume = 0.3;    
+            this.background_music.play();    
+        }
     }
+    
 
     run() {
         requestAnimationFrame(() => {
@@ -50,6 +58,14 @@ class World {
         });
     }
     
+    checkBackgroundMusic() {
+        if (isMuted) {
+            this.background_music.pause();
+        }
+        else if (!this.gameOver) {
+            this.background_music.play();
+        }          
+    }
 
     checkThrowObjects() {
         if (this.keyboard.D && !this.character.isThrowing && this.bottlesCollected > 0) {
