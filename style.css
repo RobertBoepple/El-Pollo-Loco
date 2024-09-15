@@ -1,3 +1,12 @@
+@font-face {
+    font-family: 'zabras';
+    src: url('./fonts/zabars.ttf') format('truetype');
+}
+
+*{
+    font-family: 'zabras', sans-serif;
+}
+
 body {
     margin: 0;
     padding: 0;
@@ -7,10 +16,18 @@ body {
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    background-image: url('./img/5_background/bg-desert.png');
 }
 
 canvas {
     background-color: black;
+    border-radius: 16px;
  
     
 }
+
+h1 {
+    font-size: 6rem;
+    letter-spacing: 0.5rem;
+}
+
