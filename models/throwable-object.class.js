@@ -18,15 +18,16 @@ class ThrowableObject extends MovableObject {
     ];
     isCollidingThrowable = false;
 
-    constructor(x, y) {
-        super().loadImages(['../El-Pollo-Loco/img/6_salsa_bottle/bottle_rotation/1_bottle_rotation.png']);
-
+    constructor(x, y, otherDirection) {
+        super();
+        this.otherDirection = otherDirection;
+        this.loadImages(['../El-Pollo-Loco/img/6_salsa_bottle/bottle_rotation/1_bottle_rotation.png']);
         this.loadImages(this.IMAGES_ROTATION);
         this.loadImages(this.IMAGES_SPLASH);
         this.x = x;
         this.y = y;
         this.height = 60;
-        this.width = 50;
+        this.width = 60;
         this.throw();
         this.animate()
         
@@ -36,8 +37,9 @@ class ThrowableObject extends MovableObject {
         this.speedY = 20;
         if (!this.isCollidingThrowable) {
             this.applyGravity();
+            const throwSpeed = this.otherDirection ? -10 : 10;
             setInterval(() => {
-                this.x += 10;
+                this.x += throwSpeed;
             }, 25);   
         }       
         setInterval(() => {

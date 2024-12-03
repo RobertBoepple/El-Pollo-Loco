@@ -69,7 +69,7 @@ class World {
 
     checkThrowObjects() {
         if (this.keyboard.D && !this.character.isThrowing && this.bottlesCollected > 0) {
-            let bottle = new ThrowableObject(this.character.x + 100, this.character.y + 100);
+            let bottle = new ThrowableObject(this.character.x + 100, this.character.y + 100, this.character.otherDirection);
             this.throwableObjects.push(bottle);
             this.character.isThrowing = true;
             world.throwObject_sound.play();
