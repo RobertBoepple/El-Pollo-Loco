@@ -113,8 +113,9 @@ checkCollisions() {
         if (this.character.isColliding(enemy) && this.character.isAboveGround() && !enemy.chickenDead) {
             this.character.jump();
             enemy.chickenDead = true;
-            enemy.enemyIsDead = true
+            enemy.enemyIsDead = true;
             console.log('Enemy defeated by jumping');
+            
         } 
         else if (this.character.isColliding(enemy) && !enemy.chickenDead && !this.character.isAboveGround()) {
             this.character.hit();
@@ -149,8 +150,7 @@ checkCollisionsBottles() {
             this.level.bottles.splice(index, 1);
             if(this.statusBottle.bottlesCollected > 100){
                 this.statusBottle.bottlesCollected = 100;
-            }
-            
+            }   
         }
     });
 }
