@@ -8,6 +8,12 @@ function startGame() {
     document.getElementById('start-screen').classList.add('d-none');
     init();
 }
+
+function backToMenu() {
+    document.getElementById('win-screen').classList.add('d-none');
+    document.getElementById('start-screen').classList.remove('d-none');
+}
+
 function init(){
     canvas = document.getElementById('canvas');
     world = new World(canvas, keyboard);

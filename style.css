@@ -100,3 +100,35 @@ h2 {
     align-items: center;
     transition: box-shadow 100ms ease-in-out;
 }
+
+.win-screen-container {
+    position: absolute;
+    top: 0;
+    z-index: 3;
+    background-image: url(./img/5_background/second_half_background.png);
+    border-radius: 32px;
+    height: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.win-screen-img {
+    width: 720px;
+    height: 480px;
+    border-radius: 16px;
+}
+
+.end-btn {
+    position: absolute;
+    top: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 32px;
+    width: 280px;
+    height: 63px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: box-shadow 100ms ease-in-out;
+}
