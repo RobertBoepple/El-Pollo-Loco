@@ -5,17 +5,25 @@ let isMuted = false;
 let keyboard = new Keyboard();
 
 function startGame() {
-    document.getElementById('start-screen').classList.add('d-none');
+    initLevel();
     init();
+    document.getElementById('start-screen').classList.add('d-none');
+    
 }
 
 function backToMenu() {
     document.getElementById('win-screen').classList.add('d-none');
+    document.getElementById('lose-screen').classList.add('d-none');
     document.getElementById('start-screen').classList.remove('d-none');
 }
 
 function gameWon() {
     document.getElementById('win-screen').classList.remove('d-none');
+    stopGame();
+}
+
+function gameLost() {
+    document.getElementById('lose-screen').classList.remove('d-none');
     stopGame();
 }
 
@@ -30,9 +38,6 @@ function clearAllIntervals() {
 function init(){
     canvas = document.getElementById('canvas');
     world = new World(canvas, keyboard);
-    
-    console.log('My character is', world.character);
-
 
     window.addEventListener("keydown", (e) => {
         if(e.keyCode == 37){

@@ -125,6 +125,9 @@ class Character extends MovableObject{
                 console.log('Playing dead animation');
                 this.playAnimation(this.IMAGES_DEAD);
                 world.gameOver_sound.play();
+                setTimeout(() => {
+                    gameLost();
+                }, 2000);
             } else if(this.isHurt()){
                 console.log('Playing hurt animation');
                 world.characterHurt_sound.play();

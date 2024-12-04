@@ -101,22 +101,34 @@ h2 {
     transition: box-shadow 100ms ease-in-out;
 }
 
-.win-screen-container {
+.game-over-screen-container{
     position: absolute;
     top: 0;
     z-index: 3;
     background-image: url(./img/5_background/second_half_background.png);
     border-radius: 32px;
     height: 100%;
+    width: 100%;
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
+    
+    
+    
 }
 
-.win-screen-img {
-    width: 720px;
-    height: 480px;
-    border-radius: 16px;
+.img-container {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    border: #A0220A 2px solid;
+}
+
+
+.game-over-screen-img {
+    width: 100%;
+    height: 50%;
+    
 }
 
 .end-btn {
