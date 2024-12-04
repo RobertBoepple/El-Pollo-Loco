@@ -4,7 +4,10 @@ let world;
 let isMuted = false;
 let keyboard = new Keyboard();
 
-
+function startGame() {
+    document.getElementById('start-screen').classList.add('d-none');
+    init();
+}
 function init(){
     canvas = document.getElementById('canvas');
     world = new World(canvas, keyboard);
