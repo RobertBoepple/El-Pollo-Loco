@@ -111,12 +111,11 @@ class Finalboss extends MovableObject {
         this.playAnimation(this.IMAGES_DEAD);
         console.log('Endboss is dead');
         world.gameOver = true;
-        world.background_music.pause()
-        // setTimeout(() => {
-        //     this.clearAllIntervals();
-        //     this.playSound(world.win_sound);
-        //     gameOverWin();
-        // }, 1500);
+        world.background_music.pause();
+        setTimeout(() => {
+            gameWon();
+        }, 2000);
+      
     }
 
      /**

@@ -14,6 +14,19 @@ function backToMenu() {
     document.getElementById('start-screen').classList.remove('d-none');
 }
 
+function gameWon() {
+    document.getElementById('win-screen').classList.remove('d-none');
+    stopGame();
+}
+
+function stopGame() {
+    clearAllIntervals();
+}
+
+function clearAllIntervals() {
+    for (let i = 1; i < 9999; i++) window.clearInterval(i);
+}
+
 function init(){
     canvas = document.getElementById('canvas');
     world = new World(canvas, keyboard);
@@ -63,12 +76,4 @@ function init(){
         }
     });
     
-
-function stopGame() {
-    clearAllIntervals();
-}
-
-function clearAllIntervals() {
-    for (let i = 1; i < 9999; i++) window.clearInterval(i);
-}
 }
