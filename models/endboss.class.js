@@ -69,8 +69,10 @@ class Finalboss extends MovableObject {
         this.energy -= 20; // Direkter Zugriff auf die Energie der Instanz
         if (this.energy <= 0) {
             this.energy = 0;
+            stopGame();
             // Hier kannst du die Logik für den Tod des Endbosses einfügen
             console.log('Endboss is dead');
+            
         }else {
             this.lastHitFinalBoss = new Date().getTime();
         }

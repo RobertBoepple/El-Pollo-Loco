@@ -144,3 +144,20 @@ h2 {
     align-items: center;
     transition: box-shadow 100ms ease-in-out;
 }
+
+.mini-buttons{
+    position: absolute;
+    top: 15px;
+    right: 30px;
+    gap: 8px;
+}
+
+.mini-buttons img {
+    width: 30px;
+    height: 30px;
+}
+
+.mini-buttons img:hover {
+    scale: 1.2;
+    cursor: pointer;
+}

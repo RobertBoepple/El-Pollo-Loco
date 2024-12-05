@@ -82,3 +82,13 @@ function init(){
     });
     
 }
+
+function toggleMute() {
+    let audioImage = document.getElementById("sound");
+    if (isMuted) {
+        audioImage.src = 'img/icons/sound.png';
+    } else {
+        audioImage.src = 'img/icons/no_sound.png';
+    }
+    isMuted = !isMuted;
+}
