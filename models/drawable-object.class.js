@@ -41,6 +41,10 @@ class DrawableObject{
     }
 
 
-
+    playSound(sound) {
+        if (!isMuted) {
+            sound.play();
+        }
+    }
 
 }
