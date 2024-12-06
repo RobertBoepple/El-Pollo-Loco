@@ -2,7 +2,13 @@ let canvas;
 let ctx;
 let world;
 let isMuted = false;
+let fullscreen = false;
 let keyboard = new Keyboard();
+
+document.addEventListener('fullscreenchange', exitHandler);
+document.addEventListener('webkitfullscreenchange', exitHandler);
+document.addEventListener('mozfullscreenchange', exitHandler);
+document.addEventListener('MSFullscreenChange', exitHandler);
 
 function startGame() {
     initLevel();
@@ -91,4 +97,53 @@ function toggleMute() {
         audioImage.src = 'img/icons/no_sound.png';
     }
     isMuted = !isMuted;
+}
+
+function toggleFullscreen() {
+    let content = document.getElementById("canvas-container");
+    let fullscreenImage = document.getElementById("fullscreen");
+    if (fullscreen) {
+        fullscreenImage.src = 'img/icons/fullscreen.png';
+        exitFullscreen();
+        content.classList.remove('fullscreen');
+    }
+    else {
+        fullscreenImage.src = 'img/icons/close_fullscreen.png';
+        enterFullscreen(document.getElementById("canvas-container"));
+        content.classList.add('fullscreen');
+    }
+    fullscreen = !fullscreen;
+}
+
+function enterFullscreen(element) {
+    if (element.requestFullscreen) {
+        element.requestFullscreen();
+    } else if (element.mozRequestFullScreen) {
+        element.mozRequestFullScreen();
+    } else if (element.webkitRequestFullscreen) {
+        element.webkitRequestFullscreen();
+    } else if (element.msRequestFullscreen) {
+        element.msRequestFullscreen();
+    }
+}
+
+function exitFullscreen() {
+    if (document.exitFullscreen) {
+        document.exitFullscreen();
+    } else if (document.mozCancelFullScreen) {
+        document.mozCancelFullScreen();
+    } else if (document.webkitExitFullscreen) {
+        document.webkitExitFullscreen();
+    } else if (document.msExitFullscreen) {
+        document.msExitFullscreen();
+    }
+}
+
+function exitHandler() {
+    let content = document.getElementById("canvas-container");
+    if (!document.fullscreenElement && !document.webkitIsFullScreen && !document.mozFullScreen && !document.msFullscreenElement) {
+        document.getElementById("fullscreen").src = 'img/icons/fullscreen.png';
+        content.classList.remove('fullscreen');
+        fullscreen = false;
+    }
 }
