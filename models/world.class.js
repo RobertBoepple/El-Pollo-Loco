@@ -26,6 +26,7 @@ class World {
   finalbossHurt_sound = new Audio('../El-Pollo-Loco/audio/finalboss_hurt.mp3');
   throwObject_sound = new Audio('../El-Pollo-Loco/audio/throw.mp3');
   gameOver_sound = new Audio('../El-Pollo-Loco/audio/game_over.mp3');
+  drawableObject = new DrawableObject();
 
   constructor(canvas, keyboard) {
     this.ctx = canvas.getContext('2d');
@@ -79,7 +80,8 @@ class World {
       );
       this.throwableObjects.push(bottle);
       this.character.isThrowing = true;
-      world.throwObject_sound.play();
+      this.drawableObject.playSound(this.throwObject_sound); 
+      // world.throwObject_sound.play();
       setTimeout(() => (this.character.isThrowing = false), 500);
       this.bottlesCollected -= 1;
       let percentage = (this.bottlesCollected / this.maxBottles) * 100;
@@ -109,7 +111,8 @@ class World {
         ) {
           finalboss.hitFinalBoss();
           this.statusBoss.setPercentage(finalboss.energy);
-          world.bottleBroken_sound.play();
+          this.drawableObject.playSound(this.bottleBroken_sound); 
+          // world.bottleBroken_sound.play();
           console.log(
             'Endboss hit by throwable object, energy:',
             finalboss.energy
@@ -147,7 +150,8 @@ class World {
     this.level.coins.forEach((coins, index) => {
       if (this.character.isColliding(coins)) {
         coins.collected = true;
-        world.collectCoin_sound.play();
+        this.drawableObject.playSound(this.collectCoin_sound); 
+        // world.collectCoin_sound.play();
         this.coinsCollected = this.coinsCollected + 20;
         this.statusCoin.setPercentage(this.coinsCollected);
         this.level.coins.splice(index, 1);
@@ -159,7 +163,8 @@ class World {
     this.level.bottles.forEach((bottles, index) => {
       if (this.character.isColliding(bottles) && this.bottlesCollected < 5) {
         this.bottlesCollected = this.bottlesCollected + 1;
-        world.collectBottle_sound.play();
+        this.drawableObject.playSound(this.collectBottle_sound); 
+        // world.collectBottle_sound.play();
         this.statusBottle.setPercentage(this.bottlesCollected * 20);
         this.level.bottles.splice(index, 1);
         if (this.statusBottle.bottlesCollected > 100) {

@@ -174,7 +174,8 @@ class Finalboss extends MovableObject {
         }, 1000 / 60);
         setInterval(() => {
             if (this.isHurtFinalBoss()) {
-               world.finalbossHurt_sound.play();
+                this.playSound(world.finalbossHurt_sound);
+            //    world.finalbossHurt_sound.play();
             }
         }, 100);
     }

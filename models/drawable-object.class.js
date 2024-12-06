@@ -1,4 +1,4 @@
-class DrawableObject{
+class DrawableObject {
     img;
     imageCache= {};
     currentImage = 0;
