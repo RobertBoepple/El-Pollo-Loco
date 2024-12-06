@@ -2,6 +2,7 @@ let canvas;
 let ctx;
 let world;
 let isMuted = false;
+let help = false;
 let fullscreen = false;
 let keyboard = new Keyboard();
 
@@ -147,3 +148,16 @@ function exitHandler() {
         fullscreen = false;
     }
 }
+
+function toggleHelpPage(){
+    let helpImage = document.getElementById("help");
+    if (help) {
+        document.getElementById('help-page').classList.add('d-none');
+        helpImage.src = 'img/icons/gamepad.png';
+    } else {
+        document.getElementById('help-page').classList.remove('d-none');
+        helpImage.src = 'img/icons/close.svg';
+    }
+    help = !help   
+}
+

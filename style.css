@@ -76,6 +76,19 @@ h2 {
     height: 480px;
 }
 
+.info-container {
+    position: absolute;
+    top: 0;
+    width: 720px;
+    height: 480px;
+    border-radius: 32px;
+    background-image: url(./img/5_background/second_half_background.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+
 .start-screen-img {
     width: 100%;
     height: 100%;
@@ -102,7 +115,7 @@ h2 {
     transition: box-shadow 100ms ease-in-out;
 }
 
-.game-over-screen-container{
+.game-over-screen-container {
     position: absolute;
     top: 0;
     z-index: 3;
