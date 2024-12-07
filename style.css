@@ -6,6 +6,7 @@
 *{
     font-family: 'zabras', sans-serif;
     box-sizing: border-box;
+    margin: 0;
 }
 
 html,
@@ -28,16 +29,16 @@ body {
     background-image: url('./img/5_background/bg-desert.png');
 }
 
-.content {
-    /* height: 100%;
+/* .content {
+    height: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     background-position: center;
     background-repeat: no-repeat;
-    background-size: cover; */
-}
+    background-size: cover;
+} */
 
 .canvas-container {
     position: relative;
@@ -65,7 +66,7 @@ h1 {
 }
 
 h2 {
-    font-size: 2rem;
+    font-size: 2.5rem;
     margin: 0;
 }
 
@@ -82,12 +83,51 @@ h2 {
     width: 720px;
     height: 480px;
     border-radius: 32px;
-    background-image: url(./img/5_background/second_half_background.png);
+    background-image: url(./img/5_background/layers/air.png);
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
 }
 
+.game-instruction{
+    max-height: 100%;
+    min-height: 100%;
+    border: #A0220A 2px solid;
+    padding: 48px;
+    width: 100%;
+    height: auto;
+    display: flex;
+    gap: 32px;
+    flex-direction: column;
+    text-align: center;
+}
+
+.rules p {
+    font-size: 24px;
+}
+
+.control {
+    display: flex;
+    flex-direction:row;
+    justify-content: center;
+    gap: 16px;
+}
+
+.control-btn{
+    width: 115px;
+    display: flex;
+    flex-direction: column;
+    
+}
+
+.control-btn img {
+    width: 50px;
+    height: 50px;
+}
+
+.control-d {
+    font-size: 3rem ;
+}
 
 .start-screen-img {
     width: 100%;
@@ -126,23 +166,17 @@ h2 {
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-    
-    
-    
 }
 
 .img-container {
     height: 100%;
     display: flex;
     align-items: center;
-    border: #A0220A 2px solid;
 }
-
 
 .game-over-screen-img {
     width: 100%;
-    height: 50%;
-    
+    height: 50%; 
 }
 
 .end-btn {
