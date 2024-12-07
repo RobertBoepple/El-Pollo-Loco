@@ -18,6 +18,16 @@ function startGame() {
     
 }
 
+/**
+ * initialize mobile press events
+ * 
+ */
+function initMobile() {
+    console.log('init mobile');
+    mobileKeyPressEvents();
+    mobileKeyReleaseEvents();
+}
+
 function backToMenu() {
     document.getElementById('win-screen').classList.add('d-none');
     document.getElementById('lose-screen').classList.add('d-none');
@@ -159,5 +169,55 @@ function toggleHelpPage(){
         helpImage.src = 'img/icons/close.svg';
     }
     help = !help   
+}
+
+/**
+ * sets the key to true, after pressing them (mobile)
+ * 
+ */
+function mobileKeyPressEvents() {
+    const leftButton = document.getElementById('left-btn');
+    leftButton.addEventListener('touchstart', (e) => {
+        e.preventDefault();
+        keyboard.LEFT = true;
+    });
+    const rightButton = document.getElementById('right-btn');
+    rightButton.addEventListener('touchstart', (e) => {
+        e.preventDefault();
+        keyboard.RIGHT = true;
+    });
+    const jump = document.getElementById('jump-btn');
+    jump.addEventListener('touchstart', (e) => {
+        e.preventDefault();
+        keyboard.SPACE = true;
+    });
+    const throwBottle = document.getElementById('throw-btn');
+    throwBottle.addEventListener('touchstart', (e) => {
+        e.preventDefault();
+        keyboard.D = true;
+    });
+}
+
+
+/**
+ * This function sets the key to false, after releasing them (mobile)
+ */
+function mobileKeyReleaseEvents() {
+    const leftButton = document.getElementById('left-btn');
+    leftButton.addEventListener('touchend', () => {
+        keyboard.LEFT = false;
+    });
+    const rightButton = document.getElementById('right-btn');
+    rightButton.addEventListener('touchend', () => {
+        keyboard.RIGHT = false;
+    });
+    const jump = document.getElementById('jump-btn');
+    jump.addEventListener('touchend', (e) => {
+        keyboard.SPACE = false;
+    });
+    const throwBottle = document.getElementById('throw-btn');
+    throwBottle.addEventListener('touchend', (e) => {
+        keyboard.D = false;
+    });
 }
 

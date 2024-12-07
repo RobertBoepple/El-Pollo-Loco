@@ -3,7 +3,7 @@
     src: url('./fonts/zabars.ttf') format('truetype');
 }
 
-*{
+* {
     font-family: 'zabras', sans-serif;
     box-sizing: border-box;
     margin: 0;
@@ -27,6 +27,8 @@ body {
     align-items: center;
     flex-direction: column;
     background-image: url('./img/5_background/bg-desert.png');
+    background-repeat: 0;
+    background-size: cover;
 }
 
 /* .content {
@@ -222,4 +224,103 @@ h2 {
 .force-fullscreen {
     width: 100% !important;
     height: 100% !important;
+}
+#left-btn-container {
+    position: absolute;
+    bottom: 10px;
+    left: 30px;
+    gap: 16px;
+    /* display: none; */
+
+}
+
+#right-btn-container{
+    position: absolute;
+    bottom: 10px;
+    right: 30px;
+    gap: 16px;
+    /* display: none; */
+}
+.mobile-btn {
+    width: 60px;
+    height: 60px;
+}
+
+#right-btn {
+    rotate: 180deg;
+}
+
+#jump-btn {
+    rotate: 90deg;
+}
+
+#throw-btn {
+    border: 5px solid black;
+    border-radius: 50%;
+    background-color: #FF9600;
+}
+
+.rotateDevice {
+    display: none;
+    position: absolute;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    background-color: #efe07c;
+    opacity: 1;
+    background-image:  repeating-radial-gradient( circle at 0 0, transparent 0, #efe07c 19px ), repeating-linear-gradient( #f1a80a, #f4a481 );
+    font-size: 84px;
+}
+
+@media only screen and (max-width: 1024px) {
+    #leftMobile-container, 
+    #rightMobile-container {
+        display: flex;
+    }
+}
+
+@media only screen and (max-width: 720px) {
+    #content {
+        width: 100vw;
+    }
+}
+
+@media only screen and (max-width: 650px) {
+    
+    .rotateDevice {
+        top: 0;
+        left: 0;
+        display: flex;
+    }   
+}
+
+@media only screen and (max-height: 530px) {
+    h1 {
+        display: none;
+    }
+}
+
+@media only screen and (max-width: 360px) {
+    h1 {
+        display: none;
+    }
+}
+
+@media only screen and (max-height: 430px) {
+    #canvas-container {
+        height: 100vh;
+        width: 100vw;
+        overflow: hidden;
+    }
+    #canvas , .game-over-screen-container {
+        border-radius: 0;
+    }
+}
+
+
+@media screen and (orientation: portrait) and (max-width: 720px) {
+    .flip-device {
+        display: flex;
+    }
 }
