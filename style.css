@@ -27,32 +27,30 @@ body {
     align-items: center;
     flex-direction: column;
     background-image: url('./img/5_background/bg-desert.png');
-    background-repeat: 0;
+    background-repeat: no-repeat;
     background-size: cover;
 }
 
-/* .content {
-    height: 100%;
+.content {
+    width: 100%;
     display: flex;
     flex-direction: column;
-    align-items: center;
     justify-content: center;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-} */
+    align-items: center;
 
+}
 .canvas-container {
     position: relative;
-    width: 720px;
-    height: 480px;
+    max-width: 720px;
+    max-height: 480px
 }
 
 canvas {
     /* display: block; */
     background-color: black;
     border-radius: 16px;
-  
+    width: 100%;
+    height: 100%;
 }
 
 .d-none {
@@ -60,6 +58,7 @@ canvas {
 }
 
 h1 {
+    display:inline-block;
     color: black;
     font-size: 6rem;
     letter-spacing: 0.5rem;
@@ -170,6 +169,7 @@ h2 {
     background-size: cover;
 }
 
+
 .img-container {
     height: 100%;
     display: flex;
@@ -187,8 +187,8 @@ h2 {
     left: 50%;
     transform: translateX(-50%);
     border-radius: 32px;
-    width: 280px;
-    height: 63px;
+    width: 240px;
+    height: 48px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -197,7 +197,7 @@ h2 {
 
 .mini-buttons{
     position: absolute;
-    top: 15px;
+    top: 32px;
     right: 30px;
     gap: 8px;
 }
@@ -230,7 +230,7 @@ h2 {
     bottom: 10px;
     left: 30px;
     gap: 16px;
-    /* display: none; */
+    display: none;
 
 }
 
@@ -239,7 +239,7 @@ h2 {
     bottom: 10px;
     right: 30px;
     gap: 16px;
-    /* display: none; */
+    display: none;
 }
 .mobile-btn {
     width: 60px;
@@ -274,8 +274,8 @@ h2 {
 }
 
 @media only screen and (max-width: 1024px) {
-    #leftMobile-container, 
-    #rightMobile-container {
+    #left-btn-container, 
+    #right-btn-container {
         display: flex;
     }
 }
@@ -292,7 +292,27 @@ h2 {
         top: 0;
         left: 0;
         display: flex;
-    }   
+    }
+    .rotateDevice span {
+        font-size: 48px;
+    }
+    
+}
+
+@media only screen and (max-width: 465px) {
+    h1 {
+        font-size: 64px;
+    }
+
+}
+
+@media only screen and (max-width: 360px) {
+    h1 {
+        font-size: 48px;
+    }
+    .rotateDevice span {
+        font-size: 32px;
+    } 
 }
 
 @media only screen and (max-height: 530px) {
@@ -301,11 +321,9 @@ h2 {
     }
 }
 
-@media only screen and (max-width: 360px) {
-    h1 {
-        display: none;
-    }
-}
+
+
+
 
 @media only screen and (max-height: 430px) {
     #canvas-container {
@@ -313,14 +331,9 @@ h2 {
         width: 100vw;
         overflow: hidden;
     }
-    #canvas , .game-over-screen-container {
+    #canvas , .game-over-screen-container, .start-screen-img {
         border-radius: 0;
     }
 }
 
 
-@media screen and (orientation: portrait) and (max-width: 720px) {
-    .flip-device {
-        display: flex;
-    }
-}
