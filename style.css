@@ -156,6 +156,26 @@ h2 {
     transition: box-shadow 100ms ease-in-out;
 }
 
+.impressum-btn {
+    position: absolute;
+    top: 420px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 32px;
+    width: 176px;
+    height: 48px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: box-shadow 100ms ease-in-out;
+}
+
+.goback-btn {
+    border-radius: 32px;
+    font-size: 40px;
+}
+
+
 .game-over-screen-container {
     position: absolute;
     top: 0;
@@ -269,9 +289,18 @@ h2 {
     height: 100%;
     background-color: #efe07c;
     opacity: 1;
-    background-image:  repeating-radial-gradient( circle at 0 0, transparent 0, #efe07c 19px ), repeating-linear-gradient( #f1a80a, #f4a481 );
+    background-image: url(./img/5_background/layers/air.png);
+    background-size: cover;
     font-size: 84px;
 }
+
+.impressum-content{
+    display: flex;
+    flex-direction: column;
+    align-items:center;
+    font-size: 1.8rem;
+}    
+
 
 @media only screen and (max-width: 1024px) {
     #left-btn-container, 
