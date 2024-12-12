@@ -81,13 +81,10 @@ class World {
       this.throwableObjects.push(bottle);
       this.character.isThrowing = true;
       this.drawableObject.playSound(this.throwObject_sound); 
-      // world.throwObject_sound.play();
       setTimeout(() => (this.character.isThrowing = false), 500);
       this.bottlesCollected -= 1;
       let percentage = (this.bottlesCollected / this.maxBottles) * 100;
       this.statusBottle.setPercentage(percentage);
-      console.log('Bottles Collected: ', this.bottlesCollected);
-      console.log('Percentage: ', percentage);
     }
   }
 
@@ -97,7 +94,6 @@ class World {
         this.collisionWithEndboss = true;
         this.character.energy = 0;
         this.statusBar.setPercentage(this.character.energy);
-        console.log('Character hit by endboss, energy:', this.character.energy);
       }
     });
   }
@@ -112,11 +108,6 @@ class World {
           finalboss.hitFinalBoss();
           this.statusBoss.setPercentage(finalboss.energy);
           this.drawableObject.playSound(this.bottleBroken_sound); 
-          // world.bottleBroken_sound.play();
-          console.log(
-            'Endboss hit by throwable object, energy:',
-            finalboss.energy
-          );
           this.throwableObjects.splice(index, 1);
         }
       });
@@ -133,7 +124,6 @@ class World {
         this.character.jump();
         enemy.chickenDead = true;
         enemy.enemyIsDead = true;
-        console.log('Enemy defeated by jumping');
       } else if (
         this.character.isColliding(enemy) &&
         !enemy.chickenDead &&
@@ -141,7 +131,6 @@ class World {
       ) {
         this.character.hit();
         this.statusBar.setPercentage(this.character.energy);
-        console.log('Character hit, energy:', this.character.energy);
       }
     });
   }
@@ -151,7 +140,6 @@ class World {
       if (this.character.isColliding(coins)) {
         coins.collected = true;
         this.drawableObject.playSound(this.collectCoin_sound); 
-        // world.collectCoin_sound.play();
         this.coinsCollected = this.coinsCollected + 20;
         this.statusCoin.setPercentage(this.coinsCollected);
         this.level.coins.splice(index, 1);
@@ -164,7 +152,6 @@ class World {
       if (this.character.isColliding(bottles) && this.bottlesCollected < 5) {
         this.bottlesCollected = this.bottlesCollected + 1;
         this.drawableObject.playSound(this.collectBottle_sound); 
-        // world.collectBottle_sound.play();
         this.statusBottle.setPercentage(this.bottlesCollected * 20);
         this.level.bottles.splice(index, 1);
         if (this.statusBottle.bottlesCollected > 100) {
@@ -176,9 +163,7 @@ class World {
 
   draw() {
     this.ctx.clearRect(0, 0, canvas.width, canvas.height);
-
     this.ctx.translate(this.camera_x, 0);
-
     this.addObjectsToMap(this.level.backgroundObjects);
     this.addObjectsToMap(this.level.clouds);
     this.ctx.translate(-this.camera_x, 0);
@@ -193,7 +178,6 @@ class World {
     this.addObjectsToMap(this.level.finalboss);
     this.addObjectsToMap(this.level.coins);
     this.addObjectsToMap(this.level.bottles);
-
     this.ctx.translate(-this.camera_x, 0);
     requestAnimationFrame(() => this.draw());
   }

@@ -53,7 +53,6 @@ class Chicken extends MovableObject {
         if (!this.soundPlayed) { 
             this.loadImage(this.IMAGES_DEAD);
             this.playSound(world.chickenDead_sound);
-            // world.chickenDead_sound.play();
             this.soundPlayed = true; 
 
             setTimeout(() => {
