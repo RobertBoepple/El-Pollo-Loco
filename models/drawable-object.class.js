@@ -14,12 +14,16 @@ class DrawableObject {
 
 
     draw(ctx){
+        try{
         ctx.drawImage(this.img, this.x, this.y, this.width, this.height);
+    } catch (e) {
+        console.log('Could not load image', this.img.src);
     }
+}
 
     drawFrame(ctx){
 
-        if (this instanceof Character || this instanceof Chicken || this instanceof Finalboss || this instanceof Coins || this instanceof Bottles || this instanceof ThrowableObject){
+        if (this instanceof Character   || this instanceof Finalboss || this instanceof SmallChicken || this instanceof Chicken || this instanceof Coins || this instanceof Bottles || this instanceof ThrowableObject){
         ctx.beginPath();
         ctx.lineWidth = '3';
         ctx.strokeStyle = 'blue' ;
