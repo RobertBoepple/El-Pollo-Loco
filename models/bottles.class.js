@@ -9,6 +9,14 @@ class Bottles extends MovableObject {
     ];
     y = 330;
 
+    offset = {
+    top: 15,
+    left: 40,
+    right: 25,
+    bottom: 15,
+  };
+    
+
     constructor() {
         super().loadImage('../El-Pollo-Loco/img/6_salsa_bottle/1_salsa_bottle_on_ground.png');
         this.loadImages(this.IMAGES);

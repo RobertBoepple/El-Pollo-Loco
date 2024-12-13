@@ -9,6 +9,13 @@ class Coins extends MovableObject {
         '../El-Pollo-Loco/img/8_coin/coin_2.png',
     ];
 
+    offset = {
+        top: 30,
+        left: 30,
+        right: 30,
+        bottom: 30,
+      };
+
     constructor() {
         super().loadImage('../El-Pollo-Loco/img/8_coin/coin_1.png');
         this.loadImages(this.IMAGES);
