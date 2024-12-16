@@ -119,9 +119,9 @@ class World {
       if (
         this.character.isColliding(enemy) &&
         this.character.isAboveGround() &&
+        this.isCharacterLandingOnEnemy(enemy) &&
         !enemy.chickenDead
       ) {
-        this.character.jump();
         enemy.chickenDead = true;
         enemy.enemyIsDead = true;
       } else if (
@@ -133,6 +133,14 @@ class World {
         this.statusBar.setPercentage(this.character.energy);
       }
     });
+  }
+
+  isCharacterLandingOnEnemy(enemy) {
+    return (
+      this.character.y + this.character.height <= enemy.y + enemy.height &&
+      this.character.y + this.character.height >= enemy.y &&
+      this.character.speedY < 0
+    );
   }
 
   checkCollisionsCoins() {
