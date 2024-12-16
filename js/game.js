@@ -34,6 +34,12 @@ function backToMenu() {
     document.getElementById('start-screen').classList.remove('d-none');
 }
 
+function reStart() {
+    document.getElementById('win-screen').classList.add('d-none');
+    document.getElementById('lose-screen').classList.add('d-none');
+    startGame();
+}
+
 function gameWon() {
     document.getElementById('win-screen').classList.remove('d-none');
     stopGame();

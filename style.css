@@ -216,6 +216,20 @@ h2 {
     transition: box-shadow 100ms ease-in-out;
 }
 
+.restart-btn {
+    position: absolute;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 32px;
+    width: 240px;
+    height: 48px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: box-shadow 100ms ease-in-out;
+}
+
 .mini-buttons{
     position: absolute;
     top: 8px;
