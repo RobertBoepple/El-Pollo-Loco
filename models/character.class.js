@@ -122,14 +122,12 @@ class Character extends MovableObject{
 
         setInterval(() => {
             if(this.isDead()) {
-                console.log('Playing dead animation');
                 this.playAnimation(this.IMAGES_DEAD);
                 this.playSound( world.gameOver_sound);
                 setTimeout(() => {
                     gameLost();
                 }, 2000);
             } else if(this.isHurt()){
-                console.log('Playing hurt animation');
                 this.playSound(world.characterHurt_sound);
                 this.playAnimation(this.IMAGES_HURT);
             } else if(this.isAboveGround()){
@@ -140,7 +138,7 @@ class Character extends MovableObject{
             } else {
                 this.characterAnimationIdle();
             }
-    },50);
+    },125);
     }
 
     characterAnimationIdle() {

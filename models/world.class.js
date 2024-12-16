@@ -40,7 +40,6 @@ class World {
   setWorld() {
     this.character.world = this;
     if (!isMuted) {
-      this.background_music.loop = true;
       this.background_music.volume = 0.3;
       this.background_music.play();
     }
