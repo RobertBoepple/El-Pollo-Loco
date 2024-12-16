@@ -26,7 +26,10 @@ class World {
   finalbossHurt_sound = new Audio('../El-Pollo-Loco/audio/finalboss_hurt.mp3');
   throwObject_sound = new Audio('../El-Pollo-Loco/audio/throw.mp3');
   gameOver_sound = new Audio('../El-Pollo-Loco/audio/game_over.mp3');
+  win_sound = new Audio('../El-Pollo-Loco/audio/win.mp3');
   drawableObject = new DrawableObject();
+
+  allSounds = [];
 
   constructor(canvas, keyboard) {
     this.ctx = canvas.getContext('2d');
@@ -35,36 +38,64 @@ class World {
     this.draw();
     this.setWorld();
     this.run();
+
+    this.allSounds = [
+      this.background_music,
+      this.chickenDead_sound,
+      this.bottleBroken_sound,
+      this.collectCoin_sound,
+      this.collectBottle_sound,
+      this.jump_sound,
+      this.walking_sound,
+      this.characterHurt_sound,
+      this.finalbossHurt_sound,
+      this.throwObject_sound,
+      this.gameOver_sound
+    ];
   }
 
   setWorld() {
     this.character.world = this;
     if (!isMuted) {
       this.background_music.volume = 0.3;
+      this.background_music.loop = true;
       this.background_music.play();
     }
   }
 
   run() {
     requestAnimationFrame(() => {
-      this.checkCollisions();
-      this.checkCollisionsCoins();
-      this.checkCollisionsBottles();
-      this.checkThrowObjects();
-      this.checkCollisionCharacterEndboss();
-      this.checkCollisonEndbosswithThrowableObjects();
-      this.checkBackgroundMusic();
-      this.run();
+      if (!this.gameOver) {
+        this.checkCollisions();
+        this.checkCollisionsCoins();
+        this.checkCollisionsBottles();
+        this.checkThrowObjects();
+        this.checkCollisionCharacterEndboss();
+        this.checkCollisonEndbosswithThrowableObjects();
+        this.checkBackgroundMusic();
+        this.run();
+      }
     });
   }
 
-  checkBackgroundMusic() {
-    if (isMuted) {
-      this.background_music.pause();
-    } else if (!this.gameOver) {
-      this.background_music.play();
-    }
+  stopAllSounds() {
+    this.allSounds.forEach((sound) => {
+      sound.pause();
+      sound.currentTime = 0;
+    });
   }
+ endGame() {
+  this.gameOver = true;
+  this.stopAllSounds();
+}
+
+checkBackgroundMusic() {
+  if (isMuted) {
+    this.background_music.pause();
+  } else if (!this.gameOver) {
+    this.background_music.play();
+  }
+}
 
   checkThrowObjects() {
     if (

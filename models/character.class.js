@@ -131,7 +131,6 @@ class Character extends MovableObject{
                 this.playSound(world.characterHurt_sound);
                 this.playAnimation(this.IMAGES_HURT);
             } else if(this.isAboveGround()){
-                console.log('Playing jumping animation');
                 this.playAnimation(this.IMAGES_JUMPING);
             } else if(this.world.keyboard.RIGHT || this.world.keyboard.LEFT){
                 this.playAnimation(this.IMAGES_WALKING);

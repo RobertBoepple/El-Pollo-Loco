@@ -3,6 +3,7 @@ class Finalboss extends MovableObject {
     height = 288;
     width = 216;
     y = 150;
+    speed = 5;
 
     offset = {
         top: 50,
@@ -99,7 +100,7 @@ class Finalboss extends MovableObject {
             this.finalBossAnimationAttack();
         }
         else {        
-            this.finalBossAnimationWalk();
+            this.finalBossAnimationAttack();
         }
         this.i++;    
         this.finalBossFirstContact();   
@@ -107,9 +108,9 @@ class Finalboss extends MovableObject {
 
     finalBossAnimationDead() {
         this.playAnimation(this.IMAGES_DEAD);
-        console.log('Endboss is dead');
         world.gameOver = true;
         world.background_music.pause();
+        world.win_sound.play();
         setTimeout(() => {
             gameWon();
         }, 2000);
@@ -122,8 +123,7 @@ class Finalboss extends MovableObject {
      */
      finalBossAnimationHurt() {
         this.playAnimation(this.IMAGES_HURT);
-        console.log('Endboss is hurt');
-    }
+     }
 
 
     /**
@@ -132,7 +132,6 @@ class Finalboss extends MovableObject {
      */
     finalBossAnimationAlert() {
         this.playAnimation(this.IMAGES_ALERT);
-        console.log('Endboss is alert');
     }
 
 
@@ -142,7 +141,6 @@ class Finalboss extends MovableObject {
      */
     finalBossAnimationAttack() {
         this.playAnimation(this.IMAGES_ATTACK);
-        console.log('Endboss is attacking');
     }
     
 
@@ -152,7 +150,6 @@ class Finalboss extends MovableObject {
      */
     finalBossAnimationWalk() {
         this.playAnimation(this.IMAGES_WALKING);
-        console.log('Endboss is walking');
     }
 
     finalBossFirstContact() {

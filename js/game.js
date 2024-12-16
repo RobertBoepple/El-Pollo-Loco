@@ -45,6 +45,7 @@ function gameLost() {
 }
 
 function stopGame() {
+    world.endGame()
     clearAllIntervals();
 }
 
