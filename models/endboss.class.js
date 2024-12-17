@@ -153,7 +153,7 @@ class Finalboss extends MovableObject {
     }
 
     finalBossFirstContact() {
-        if (world.character.x > 3525 && !this.hadFirstContact) {
+        if (world.character.x > 2525 && !this.hadFirstContact) {
             this.i = 0;
             this.hadFirstContact = true;
         }
@@ -175,5 +175,4 @@ class Finalboss extends MovableObject {
             }
         }, 100);
     }
-
 }
