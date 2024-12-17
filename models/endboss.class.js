@@ -60,7 +60,7 @@ class Finalboss extends MovableObject {
         this.loadImages(this.IMAGES_ATTACK);
         this.loadImages(this.IMAGES_HURT);
         this.loadImages(this.IMAGES_DEAD);
-        this.x = 2000;
+        this.x = 4000;
         this.animate();
 
         

@@ -7,7 +7,7 @@ class Character extends MovableObject{
 
     offset = {
         top: 80,
-        bottom: 0,
+        bottom: 30,
         left: 20,
         right: 20,
     }
@@ -126,7 +126,7 @@ class Character extends MovableObject{
                 this.playSound( world.gameOver_sound);
                 setTimeout(() => {
                     gameLost();
-                }, 2000);
+                }, 750);
             } else if(this.isHurt()){
                 this.playSound(world.characterHurt_sound);
                 this.playAnimation(this.IMAGES_HURT);
