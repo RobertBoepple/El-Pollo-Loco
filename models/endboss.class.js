@@ -60,7 +60,7 @@ class Finalboss extends MovableObject {
         this.loadImages(this.IMAGES_ATTACK);
         this.loadImages(this.IMAGES_HURT);
         this.loadImages(this.IMAGES_DEAD);
-        this.x = 4000;
+        this.x = 3700;
         this.animate();
 
         
@@ -153,7 +153,7 @@ class Finalboss extends MovableObject {
     }
 
     finalBossFirstContact() {
-        if (world.character.x > 1425 && !this.hadFirstContact) {
+        if (world.character.x > 3525 && !this.hadFirstContact) {
             this.i = 0;
             this.hadFirstContact = true;
         }

@@ -152,6 +152,7 @@ checkBackgroundMusic() {
         this.isCharacterLandingOnEnemy(enemy) &&
         !enemy.chickenDead
       ) {
+        this.character.jump();
         enemy.chickenDead = true;
         enemy.enemyIsDead = true;
       } else if (
