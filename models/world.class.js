@@ -50,8 +50,10 @@ class World {
       this.characterHurt_sound,
       this.finalbossHurt_sound,
       this.throwObject_sound,
+      this.win_sound,
       this.gameOver_sound
     ];
+    this.setAllSoundsVolume(0.3);
   }
 
   setWorld() {
@@ -238,5 +240,10 @@ checkBackgroundMusic() {
       mo.draw(this.ctx);
     }
     mo.drawFrame(this.ctx);
+  }
+  setAllSoundsVolume(volume) {
+    this.allSounds.forEach((sound) => {
+      sound.volume = volume;
+    });
   }
 }
