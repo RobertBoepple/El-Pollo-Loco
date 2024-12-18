@@ -36,17 +36,17 @@ class ThrowableObject extends MovableObject {
    * Initiates the throw action for the object. The object will move horizontally and apply gravity.
    */
   throw() {
-    this.speedY = 20; // Initial vertical speed for the throw.
+    this.speedY = 20;
     if (!this.isCollidingThrowable) {
-      this.applyGravity(); // Apply gravity to the object.
-      const throwSpeed = this.otherDirection ? -10 : 10; // Determine the throw direction (left or right).
+      this.applyGravity();
+      const throwSpeed = this.otherDirection ? -10 : 10;
 
       setInterval(() => {
-        this.x += throwSpeed; // Move the object horizontally based on the throw speed.
+        this.x += throwSpeed;
       }, 25);
     }
 
-    // Start the animation process at regular intervals.
+   
     setInterval(() => {
       this.animate();
     }, 100);
@@ -58,9 +58,9 @@ class ThrowableObject extends MovableObject {
    */
   animate() {
     if (this.isAboveGround() && !this.isCollidingThrowable) {
-      this.playAnimation(this.IMAGES_ROTATION); // Play the rotation animation if the object is in the air.
+      this.playAnimation(this.IMAGES_ROTATION);
     } else {
-      this.playAnimation(this.IMAGES_SPLASH); // Play the splash animation if the object hits the ground or an obstacle.
+      this.playAnimation(this.IMAGES_SPLASH);
     }
   }
 }

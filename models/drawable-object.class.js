@@ -22,11 +22,7 @@ class DrawableObject {
    * @param {CanvasRenderingContext2D} ctx - The canvas rendering context.
    */
   draw(ctx) {
-    try {
       ctx.drawImage(this.img, this.x, this.y, this.width, this.height);
-    } catch (e) {
-      console.log('Could not load image', this.img?.src);
-    }
   }
 
   /**

@@ -68,7 +68,6 @@ hit() {
       this.energy = 0;
     } else {
       this.lastHit = now;
-      console.log(this.energy);
     }
   }
 }

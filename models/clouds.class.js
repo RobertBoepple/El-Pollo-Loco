@@ -18,10 +18,10 @@ class Clouds extends MovableObject {
    */
   animate() {
     setInterval(() => {
-      this.x -= 1; // Move the cloud 1px to the left.
+      this.x -= 1;
       if (this.x < -400) {
-        this.x = 4300; // Reset the cloud's position when it moves off-screen.
+        this.x = 4300;
       }
-    }, 1000 / 25); // Updates the position at 25 frames per second.
+    }, 1000 / 25);
   }
 }
