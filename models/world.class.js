@@ -239,7 +239,6 @@ checkBackgroundMusic() {
     } else {
       mo.draw(this.ctx);
     }
-    mo.drawFrame(this.ctx);
   }
   setAllSoundsVolume(volume) {
     this.allSounds.forEach((sound) => {

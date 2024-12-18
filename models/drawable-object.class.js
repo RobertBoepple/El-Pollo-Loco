@@ -20,21 +20,6 @@ class DrawableObject {
         console.log('Could not load image', this.img.src);
     }
 }
-
-    drawFrame(ctx){
-
-        if (this instanceof Character   || this instanceof Finalboss || this instanceof SmallChicken || this instanceof Chicken || this instanceof Coins || this instanceof Bottles || this instanceof ThrowableObject){
-        ctx.beginPath();
-        ctx.lineWidth = '3';
-        ctx.strokeStyle = 'blue' ;
-        ctx.rect(
-            this.x + this.offset.left, 
-            this.y + this.offset.top, 
-            this.width - this.offset.right - this.offset.left, 
-            this.height - this.offset.bottom - this.offset.top);
-        ctx.stroke();
-        }
-    }
     
     loadImages(arr) {
         arr.forEach(path => {
