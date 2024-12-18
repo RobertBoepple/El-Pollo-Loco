@@ -52,18 +52,26 @@ class MovableObject extends DrawableObject {
     );
   }
 
-  /**
-   * Reduces the object's energy by 1 and records the timestamp of the hit.
-   * If energy reaches 0, the object is considered "dead."
-   */
-  hit() {
-    this.energy -= 1;
+/**
+ * Reduces the object's energy by 1 and records the timestamp of the hit.
+ * If energy reaches 0, the object is considered "dead."
+ * Prevents hits from being registered too frequently.
+ */
+hit() {
+  const now = new Date().getTime();
+  const timeSinceLastHit = (now - this.lastHit) / 1000;
+
+  if (timeSinceLastHit >= 1) {
+    this.energy -= 20;
+
     if (this.energy <= 0) {
       this.energy = 0;
     } else {
-      this.lastHit = new Date().getTime();
+      this.lastHit = now;
+      console.log(this.energy);
     }
   }
+}
 
   /**
    * Checks if the object is "dead" (energy equals 0).
