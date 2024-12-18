@@ -89,7 +89,6 @@ class World {
   /**
    * Stops all sounds by pausing them and resetting their current time.
    */
-
   stopAllSounds() {
     this.allSounds.forEach((sound) => {
       sound.pause();
@@ -124,7 +123,6 @@ class World {
       this.throwBottle();
     }
   }
-
   /**
    * Determines if the character is able to throw a bottle.
    * @returns {boolean} Whether the character can throw a bottle.
@@ -232,11 +230,6 @@ class World {
     this.statusBar.setPercentage(this.character.energy);
   }
 
-  /**
-   * Determines if the character is landing on an enemy based on the character's position and speed.
-   * @param {Enemy} enemy - The enemy to check for landing.
-   * @returns {boolean} True if the character is landing on the enemy, otherwise false.
-   */
   isCharacterLandingOnEnemy(enemy) {
     return (
       this.character.y + this.character.height <= enemy.y + enemy.height &&
@@ -266,25 +259,17 @@ class World {
    * If a collision occurs and the player hasn't reached the maximum bottle count, the bottle is collected.
    */
   checkCollisionsBottles() {
-    this.level.bottles.forEach((bottle, index) => {
-      if (
-        this.character.isColliding(bottle) &&
-        this.bottlesCollected < this.maxBottles
-      ) {
-        this.collectBottle(index);
+    this.level.bottles.forEach((bottles, index) => {
+      if (this.character.isColliding(bottles) && this.bottlesCollected < 5) {
+        this.bottlesCollected = this.bottlesCollected + 1;
+        this.drawableObject.playSound(this.collectBottle_sound);
+        this.statusBottle.setPercentage(this.bottlesCollected * 20);
+        this.level.bottles.splice(index, 1);
+        if (this.statusBottle.bottlesCollected > 100) {
+          this.statusBottle.bottlesCollected = 100;
+        }
       }
     });
-  }
-
-  /**
-   * Collects a bottle, increases the bottle count, and updates the bottle status bar.
-   * @param {number} index - The index of the bottle being collected.
-   */
-  collectBottle(index) {
-    this.bottlesCollected++;
-    this.drawableObject.playSound(this.collectBottle_sound);
-    this.updateBottleStatus();
-    this.level.bottles.splice(index, 1);
   }
 
   /**
@@ -303,8 +288,7 @@ class World {
     requestAnimationFrame(() => this.draw());
   }
 
-  /**
-   * Clears the entire canvas.
+  /**    * Clears the entire canvas.
    */
   clearCanvas() {
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
