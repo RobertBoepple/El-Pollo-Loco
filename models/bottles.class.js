@@ -27,6 +27,6 @@ class Bottles extends MovableObject {
   animate() {
     setInterval(() => {
       this.playAnimation(this.IMAGES);
-    }, 1000 / 7); // 7 frames per second.
+    }, 1000 / 7);
   }
 }

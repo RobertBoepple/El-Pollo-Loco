@@ -45,7 +45,7 @@ class BottleStatusBar extends DrawableObject {
     } else if (this.percentage >= 20) {
       return 1;
     } else {
-      return 0; // No bottles collected.
+      return 0;
     }
   }
 }

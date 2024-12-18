@@ -288,7 +288,8 @@ class World {
     requestAnimationFrame(() => this.draw());
   }
 
-  /**    * Clears the entire canvas.
+  /**
+   *  Clears the entire canvas.
    */
   clearCanvas() {
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);

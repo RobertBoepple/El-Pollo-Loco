@@ -26,7 +26,6 @@ function startGame() {
  * Logs 'init mobile' to the console for debugging purposes.
  */
 function initMobile() {
-  console.log('init mobile');
   mobileKeyPressEvents();
   mobileKeyReleaseEvents();
 }
@@ -90,7 +89,6 @@ function init() {
   canvas = document.getElementById('canvas');
   world = new World(canvas, keyboard);
 
-  // Listen for keydown events to set the respective key state to true in the keyboard object
   window.addEventListener('keydown', (e) => {
     if (e.keyCode == 37) {
       keyboard.LEFT = true;
@@ -112,7 +110,6 @@ function init() {
     }
   });
 
-  // Listen for keyup events to set the respective key state to false in the keyboard object
   window.addEventListener('keyup', (e) => {
     if (e.keyCode == 37) {
       keyboard.LEFT = false;
@@ -202,6 +199,12 @@ function exitFullscreen() {
   }
 }
 
+/**
+ * Handles the exit from fullscreen mode.
+ * Checks if the document is no longer in fullscreen mode and updates the UI accordingly.
+ * Changes the fullscreen icon, removes the fullscreen class from the container,
+ * and updates the `fullscreen` flag.
+ */
 function exitHandler() {
   let content = document.getElementById('canvas-container');
   if (
