@@ -33,39 +33,53 @@ class Chicken extends MovableObject {
         this.speed = 0.15 + Math.random() * 0.25
         this.animate();
     }
-    animate(){
-        setInterval(() => {
-            this.chickenMoves();
-        }, 1000/60);
-        
-        setInterval(() => {
-            if(!this.chickenDead){
-                this.playAnimation(this.IMAGES_WALKING);
-            } else {
-                this.chickenAnimationDead();
-                
-            }
-            
-    }, 1000/7);
-    
-    }
-    chickenAnimationDead() {
-        if (!this.soundPlayed) { 
-            this.loadImage(this.IMAGES_DEAD);
-            this.playSound(world.chickenDead_sound);
-            this.soundPlayed = true; 
+    /**
+ * Animates the chicken's movement and behavior by setting two intervals:
+ * - One interval updates the chicken's position at 60 FPS.
+ * - The other interval handles the chicken's animation based on its state (walking or dead).
+ */
+animate() {
+    setInterval(() => {
+        this.chickenMoves();
+    }, 1000 / 60);
 
-            setTimeout(() => {
-                this.IMAGES_DEAD = [];
-            }, 500);
+    setInterval(() => {
+        if (!this.chickenDead) {
+            this.playAnimation(this.IMAGES_WALKING);
+        } else {
+            this.chickenAnimationDead();
         }
+    }, 1000 / 7);
+}
+
+/**
+ * Handles the dead animation of the chicken:
+ * - Loads the "dead" image.
+ * - Plays the death sound.
+ * - Clears the dead image after 500ms to remove the chicken from the screen.
+ * Ensures the sound is played only once.
+ */
+chickenAnimationDead() {
+    if (!this.soundPlayed) {
+        this.loadImage(this.IMAGES_DEAD);
+        this.playSound(world.chickenDead_sound);
+        this.soundPlayed = true;
+
+        setTimeout(() => {
+            this.IMAGES_DEAD = [];
+        }, 500);
     }
-   
-    chickenMoves() {
-        if (!this.enemyIsDead) {
-            this.moveLeft();
-        }
+}
+
+/**
+ * Moves the chicken to the left if it is not dead.
+ */
+chickenMoves() {
+    if (!this.enemyIsDead) {
+        this.moveLeft();
     }
+}
+
 
 
 }

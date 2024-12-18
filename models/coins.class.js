@@ -24,24 +24,33 @@ class Coins extends MovableObject {
         this.animate();
     }
 
-    coinCollected() {
+     /**
+     * Handles the logic for when the coin is collected:
+     * - Clears the animation images if the coin has been collected.
+     */
+     coinCollected() {
         if (this.collected) {
             this.IMAGES = [];
             this.loadImage(this.IMAGES);
         }
     }
 
-
-
+    /**
+     * Plays the coin animation if it has not been collected.
+     */
     coinAnimation() {
         if (!this.collected) {
             this.playAnimation(this.IMAGES);
         }
     }
-    animate(){
+
+    /**
+     * Animates the coin by cycling through its images at ~7 frames per second.
+     */
+    animate() {
         setInterval(() => {
             this.playAnimation(this.IMAGES);
-    }, 1000/7);
+        }, 1000 / 7); // 7 frames per second.
     }
     
 };

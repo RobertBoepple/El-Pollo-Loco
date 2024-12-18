@@ -15,8 +15,13 @@ level1 = new Level(
         new SmallChicken(),                              
     
 ],
-[
+[   new Clouds(),
+    new Clouds(),
+    new Clouds(),
+    new Clouds(),
+    new Clouds(),
     new Clouds()],
+    
     [
         new BackgroundObject('../El-Pollo-Loco/img/5_background/layers/air.png', -719),
         new BackgroundObject('../El-Pollo-Loco/img/5_background/layers/3_third_layer/2.png', -719),
